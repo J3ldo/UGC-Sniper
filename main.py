@@ -99,9 +99,13 @@ while 1:
             continue
             
         if info.get("priceStatus", "") != "Off Sale":
-            productid = r.post("https://apis.roblox.com/marketplace-items/v1/items/details",
-                   json={"itemIds": [info["collectibleItemId"]]},
-                   headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()[0]["collectibleProductId"]
+            try:
+                productid = r.post("https://apis.roblox.com/marketplace-items/v1/items/details",
+                       json={"itemIds": [info["collectibleItemId"]]},
+                       headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()[0]["collectibleProductId"]
+            except:
+                print("Ratelimit whilst trying to buy. Recieved info: ", info)
+                return
 
             buy(info, info["collectibleItemId"], productid)
 
