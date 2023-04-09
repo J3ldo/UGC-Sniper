@@ -65,14 +65,16 @@ def buy(json, itemid, productid):
         else:
             print(f"Successfully bought the limited! Info: {bought} - {data}")
 
-        try:
-            info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
+        info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
                       json={"items": [{"itemType": "Asset", "id": int(limited)}]},
-                      headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()["data"][0]
+                      headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie})
+        try:
+            left = info.json()["data"][0]["unitsAvailableForConsumption"]
         except:
-            info = {"unitsAvailableForConsumption": 1}
+            print(f"Failed getting stock. Full log: {info.text} - {info.reason}")
+            left = 0
 
-        if info["unitsAvailableForConsumption"] == 0:
+        if left == 0:
             print("Couldn't buy the limited in time. Better luck next time.")
             return
 
@@ -101,10 +103,16 @@ while 1:
             time.sleep(60-int(datetime.datetime.now().second))
             continue
 
-        if info.get("priceStatus", "") != "Off Sale":
+        if info.get("priceStatus", "") != "Off Sale" and info.get("collectibleItemId") is not None:
             productid = r.post("https://apis.roblox.com/marketplace-items/v1/items/details",
                    json={"itemIds": [info["collectibleItemId"]]},
-                   headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()[0]["collectibleProductId"]
+                   headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie})
+
+            try:
+                productid = productid.json()[0]["collectibleProductId"]
+            except:
+                print(f"Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
+                continue
 
             buy(info, info["collectibleItemId"], productid)
 
