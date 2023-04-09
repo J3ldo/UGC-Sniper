@@ -50,7 +50,7 @@ def buy(json, itemid, productid):
                       json={"items": [{"itemType": "Asset", "id": int(limited)}]},
                       headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()
 
-        if info["unitsAvailableForConsumption"] == 0:
+        if info["data"][0]["unitsAvailableForConsumption"] == 0:
             print("Couldn't buy the limited in time. Better luck next time.")
             return
 
@@ -74,20 +74,26 @@ while x_token == "":
 # https://apis.roblox.com/marketplace-items/v1/items/details
 # https://catalog.roblox.com/v1/catalog/items/details
 
-cooldown = 60/(40/len(limiteds))
+cooldown = 60/(35/len(limiteds))
 while 1:
     start = time.perf_counter()
 
     for limited in limiteds:
-        info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
-                           json={"items": [{"itemType": "Asset", "id": int(limited)}]},
-                           headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()
-        if info['data'][0].get("priceStatus", "") != "Off Sale":
+        try:
+            info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
+                               json={"items": [{"itemType": "Asset", "id": int(limited)}]},
+                               headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()['data'][0]
+        except KeyError:
+            print("Ratelimit waiting for minute to end")
+            time.sleep(60-int(datetime.datetime.now().second))
+            continue
+            
+        if info.get("priceStatus", "") != "Off Sale":
             productid = r.post("https://apis.roblox.com/marketplace-items/v1/items/details",
-                   json={"itemIds": [info["data"][0]["collectibleItemId"]]},
+                   json={"itemIds": [info["collectibleItemId"]]},
                    headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()[0]["collectibleProductId"]
 
-            buy(info["data"][0], info["data"][0]["collectibleItemId"], productid)
+            buy(info, info["collectibleItemId"], productid)
 
     taken = time.perf_counter()-start
     if taken < cooldown:
