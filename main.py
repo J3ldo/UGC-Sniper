@@ -46,17 +46,27 @@ def buy(json, itemid, productid):
 
     if not bought["purchased"]:
         print("Failed buying the limited, trying again..")
-        info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
+        
+        try:        
+            info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
                       json={"items": [{"itemType": "Asset", "id": int(limited)}]},
                       headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()
+        except:
+            print("Ratelimit!")
+            return
 
         if info["data"][0]["unitsAvailableForConsumption"] == 0:
             print("Couldn't buy the limited in time. Better luck next time.")
             return
 
-        productid = r.post("https://apis.roblox.com/marketplace-items/v1/items/details",
+        try:
+            productid = r.post("https://apis.roblox.com/marketplace-items/v1/items/details",
                            json={"itemIds": [info["data"][0]["collectibleItemId"]]},
                            headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()[0]["collectibleProductId"]
+        except:
+            print("Ratelimit Recieved info: ", info)
+            return
+        
         buy(json, productid, info["data"][0]["collectibleItemId"])
         return
 
