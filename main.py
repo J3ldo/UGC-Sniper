@@ -105,7 +105,7 @@ while 1:
                        headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}).json()[0]["collectibleProductId"]
             except:
                 print("Ratelimit whilst trying to buy. Recieved info: ", info)
-                return
+                continue
 
             buy(info, info["collectibleItemId"], productid)
 
