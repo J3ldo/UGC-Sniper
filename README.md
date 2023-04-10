@@ -12,7 +12,7 @@ Special thanks to Poochy#3083 for helping with this project.
 4. [How to use](https://github.com/J3ldo/UGC-Sniper#how-to-use)
 
 ## [Premium](https://discord.gg/3Uvcf8d9aY)
-If you aren't happy with the preformance of this UGC Sniper or want a limited sniper. You can buy the premium limited sniper. This sniper has way more functionality because for just €5,- you can get the following features.
+If you aren't happy with the preformance of this UGC Sniper or want a limited sniper. You can buy the premium limited sniper. This sniper has way more functionality because for just €10,- you can get the following features.
   
 Search for free limiteds and checks prices way faster.
 Search items based on RAP, Projection detection, alt account support, buying every limited with a price under 50 robux, blacklisted keywords, checking 119 limiteds in 0,75 seconds (no proxies), dynamic pricing of limited, and way more. 
