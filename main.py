@@ -7,6 +7,12 @@ import datetime
 from itertools import cycle
 import colored
 from colored import fore
+import discord_webhook
+from discord_webhook import DiscordWebhook, DiscordEmbed
+
+
+webhook = DiscordWebhook(url='your webhook url')
+
 
 with open("limiteds.txt", "r") as f:
     limiteds = f.read().replace(" ", "").split(",")
@@ -75,6 +81,9 @@ def buy(json, itemid, productid, prox):
             print(fore.RED + f"Failed buying the limited, trying again.. Info: {bought} - {data}")
         else:
             print(fore.GREEN + f"Successfully bought the limited! Info: {bought} - {data}")
+            embed = DiscordEmbed(title='Purchased Limited', description=f'{bought} - {data}', color='00FF00') 
+            webhook.add_embed(embed)
+            webhook.execute()
 
         info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
                       json={"items": [{"itemType": "Asset", "id": int(limited)}]},
@@ -135,7 +144,10 @@ while 1:
     print(fore.GREEN + "Taken: " + str(taken))
     print(fore.GREEN + "Cooldown: " + str(cooldown))
     if taken < cooldown:
-        time.sleep(cooldown-taken-0.7) # better wait time
+        settle = cooldown-taken-0.7
+        if settle < 0:
+            settle = 0.3
+        time.sleep(settle) # better wait time
 
     os.system("cls")
     print(
