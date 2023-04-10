@@ -6,7 +6,7 @@ import time
 import datetime
 from itertools import cycle
 import colored
-from colored import stylize
+from colored import fore
 
 with open("limiteds.txt", "r") as f:
     limiteds = f.read().replace(" ", "").split(",")
