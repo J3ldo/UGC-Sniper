@@ -87,7 +87,7 @@ def buy(json, itemid, productid, prox):
 
         info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
                       json={"items": [{"itemType": "Asset", "id": int(limited)}]},
-                      headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy})
+                      headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+prox})
         try:
             left = info.json()["data"][0]["unitsAvailableForConsumption"]
         except:
