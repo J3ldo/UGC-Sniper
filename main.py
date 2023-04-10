@@ -89,7 +89,7 @@ while x_token == "":
 # https://apis.roblox.com/marketplace-items/v1/items/details
 # https://catalog.roblox.com/v1/catalog/items/details
 
-cooldown = 60/(39/len(limiteds))
+cooldown = 60/(39/len(limiteds))-0.8
 while 1:
     start = time.perf_counter()
 
