@@ -36,7 +36,7 @@ def get_x_token():
         time.sleep(248)
 
 
-def buy(json, itemid, productid):
+def buy(json, itemid, productid, prox):
     print(fore.GREEN + "BUYING LIMITED: " + productid)
     
 
@@ -55,7 +55,7 @@ def buy(json, itemid, productid):
     while 1:
         data["idempotencyKey"] = str(uuid.uuid4())
         bought = r.post(f"https://apis.roblox.com/marketplace-sales/v1/item/{itemid}/purchase-item", json=data,
-            headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy})
+            headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+prox})
 
         if bought.reason == "Too Many Requests":
             print(fore.YELLOW + "Ran into a ratelimit, switching proxy and trying again.")
@@ -128,7 +128,7 @@ while 1:
                 print(fore.RED + f"Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
                 continue
 
-            buy(info, info["collectibleItemId"], productid)
+            buy(info, info["collectibleItemId"], productid, proxy)
 
     taken = time.perf_counter()-start
     print(fore.GREEN + "Start: " + str(start))
