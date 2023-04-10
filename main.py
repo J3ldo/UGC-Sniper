@@ -5,6 +5,8 @@ import uuid
 import time
 import datetime
 from itertools import cycle
+import colored
+from colored import stylize
 
 with open("limiteds.txt", "r") as f:
     limiteds = f.read().replace(" ", "").split(",")
@@ -18,7 +20,7 @@ with open("proxies.txt", "r") as f:
     proxy = next(proxy_pool)
 
 
-user_id = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy}).json()["id"] #proxies={'http':"http://"+proxy})
+user_id = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy}).json()["id"]
 x_token = ""
 def get_x_token():
     global x_token
@@ -35,7 +37,8 @@ def get_x_token():
 
 
 def buy(json, itemid, productid):
-    print("BUYING LIMITED: " + itemid)
+    print(fore.GREEN + "BUYING LIMITED: " + productid)
+    
 
     data = {
         "collectibleItemId": itemid,
@@ -55,7 +58,7 @@ def buy(json, itemid, productid):
             headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy})
 
         if bought.reason == "Too Many Requests":
-            print("Ran into a ratelimit, switching proxy and trying again.")
+            print(fore.YELLOW + "Ran into a ratelimit, switching proxy and trying again.")
             proxy = next(proxy_pool) # switch proxy
             print("Proxy: " + proxy)
             time.sleep(0.5)
@@ -65,13 +68,13 @@ def buy(json, itemid, productid):
             bought = bought.json()
         except:
             print(bought.reason)
-            print("Json decoder error whilst trying to buy item.")
+            print(fore.YELLOW +"Json decoder error whilst trying to buy item.")
             continue
 
         if not bought["purchased"]:
-            print(f"Failed buying the limited, trying again.. Info: {bought} - {data}")
+            print(fore.RED + f"Failed buying the limited, trying again.. Info: {bought} - {data}")
         else:
-            print(f"Successfully bought the limited! Info: {bought} - {data}")
+            print(fore.GREEN + f"Successfully bought the limited! Info: {bought} - {data}")
 
         info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
                       json={"items": [{"itemType": "Asset", "id": int(limited)}]},
@@ -79,11 +82,11 @@ def buy(json, itemid, productid):
         try:
             left = info.json()["data"][0]["unitsAvailableForConsumption"]
         except:
-            print(f"Failed getting stock. Full log: {info.text} - {info.reason}")
+            print(fore.RED + f"Failed getting stock. Full log: {info.text} - {info.reason}")
             left = 0
 
         if left == 0:
-            print("Couldn't buy the limited in time. Better luck next time.")
+            print(fore.RED + "Couldn't buy the limited in time. Better luck next time.")
             return
 
 
@@ -107,7 +110,7 @@ while 1:
                            json={"items": [{"itemType": "Asset", "id": int(limited)}]},
                            headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy}).json()["data"][0]
         except KeyError:
-              print(f"Ratelimited on proxy: {proxy} - switching proxy and trying again.")
+              print(fore.YELLOW + f"Ratelimited on proxy: {proxy} - switching proxy and trying again.")
               proxy = next(proxy_pool) # switch proxy
               print("New Proxy: " + proxy)
              
@@ -122,16 +125,19 @@ while 1:
             try:
                 productid = productid.json()[0]["collectibleProductId"]
             except:
-                print(f"Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
+                print(fore.RED + f"Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
                 continue
 
             buy(info, info["collectibleItemId"], productid)
 
-    # taken = time.perf_counter()-start
-    # if taken < cooldown:
-    #     time.sleep(cooldown-taken)
+    taken = time.perf_counter()-start
+    print(fore.GREEN + "Start: " + str(start))
+    print(fore.GREEN + "Taken: " + str(taken))
+    print(fore.GREEN + "Cooldown: " + str(cooldown))
+    if taken < cooldown:
+        time.sleep(cooldown-taken-0.7) # better wait time
 
     os.system("cls")
     print(
-          f"Active: {round(time.perf_counter()-start, 3)}\n"
+          f"Time: {round(time.perf_counter()-start, 3)}\n"
           )
