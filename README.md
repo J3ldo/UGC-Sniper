@@ -10,3 +10,5 @@ forked
 going on vacation for a week so won't be really updating this unless there is a bug
 
 ### free proxies barely work stop asking abt them 😡😡
+
+IF WHEN YOU ARE ABT TO PURCHASE AND THE BOT RUNS INTO AN ERROR WHERE YOU HAVE AN INVALID COOKIE YOU HAVE TO USE PROXIES THAT ARE IN THE SAME REGION YOU ARE LOGGED IN AS OR ELSE YOUR COOKIE INVALIDATES!!!
