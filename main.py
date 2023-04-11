@@ -144,7 +144,7 @@ while 1:
     print(fore.GREEN + "Taken: " + str(taken))
     print(fore.GREEN + "Cooldown: " + str(cooldown))
     if taken < cooldown:
-        settle = cooldown-taken-0.7
+        settle = cooldown-taken-0.7 # REMOVE -0.7 IF YOU WANT SLOWER RATES 1-1.5 BUT NO RATELIMITS
         if settle < 0:
             settle = 0.3
         time.sleep(settle) # better wait time
