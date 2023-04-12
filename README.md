@@ -1,8 +1,9 @@
 ```
 forked
-[Guide](< https://docs.google.com/document/d/1bIM-zHvUacxv_QQbjAfNZBQ8jzXQFTMHiuGET-aRzOA/edit>)
 pip install -r requirements
 ```
+
+[Guide](< https://docs.google.com/document/d/1bIM-zHvUacxv_QQbjAfNZBQ8jzXQFTMHiuGET-aRzOA/edit>)
 
 ```
 ++ wait time
