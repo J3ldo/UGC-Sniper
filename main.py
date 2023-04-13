@@ -27,8 +27,10 @@ with open("proxies.txt", "r") as f:
     proxy_pool = cycle(proxies)
     proxy = next(proxy_pool)
 
-
-user_id = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy}).json()["id"]
+        try:
+          user_id = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy}).json()["id"]
+        except:
+          print(fore.RED + "Invalid Cookie")
 x_token = ""
 x_lims = 0
 x_proxy = 0
@@ -78,7 +80,7 @@ def buy(json, itemid, productid, prox, session):
         "idempotencyKey": "random uuid4 string that will be your key or smthn",
         "collectibleProductId": productid
     }
-
+        
     while 1:
         try:
             data["idempotencyKey"] = str(uuid.uuid4())
