@@ -12,7 +12,7 @@ from discord_webhook import DiscordWebhook, DiscordEmbed
 
 
 webhook = DiscordWebhook(url='')
-s = requests.Session()
+s = r.Session()
 
 with open("limiteds.txt", "r") as f:
     limiteds = f.read().replace(" ", "").split(",")
