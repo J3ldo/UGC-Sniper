@@ -9,9 +9,7 @@ import colored
 from colored import fore, back, style
 import discord_webhook
 from discord_webhook import DiscordWebhook, DiscordEmbed
-import asyncio 
-from aiohttp import ClientSession, ClientResponseError
-# ^ thinking abt adding
+
 
 webhook = DiscordWebhook(url='')
 s = requests.Session()
