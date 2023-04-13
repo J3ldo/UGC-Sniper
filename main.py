@@ -25,10 +25,10 @@ with open("proxies.txt", "r") as f:
     proxy_pool = cycle(proxies)
     proxy = next(proxy_pool)
 
-        try:
-          user_id = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy}).json()["id"]
-        except:
-          print(fore.RED + "Invalid Cookie")
+    try:
+        user_id = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookie}, proxies={'http':"http://"+proxy}).json()["id"]
+    except:
+        print(fore.RED + "Invalid Cookie")
 x_token = ""
 x_lims = 0
 x_proxy = 0
