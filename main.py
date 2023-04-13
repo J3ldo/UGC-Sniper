@@ -146,7 +146,7 @@ while 1:
              
               proxy = next(proxy_pool) # switch proxy
               usedProxies(proxy)
-              time.sleep(5)
+              time.sleep(6.9)
               continue
 
         if info.get("priceStatus", "") != "Off Sale" and info.get("collectibleItemId") is not None:
