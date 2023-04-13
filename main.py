@@ -15,15 +15,15 @@ webhook = DiscordWebhook(url='')
 s = r.Session()
 
 # checking for update
-print(fore.GREEN + "Checking for potential updates...")
-gitcode = r.get("https://github.com/maxhithere/UGC-Sniper/blob/main/main.py").text
-with open("main.py", "r") as f:
-    if f.read() != gitcode:
-        print(fore.GREEN + "Found update, updating to newest version..")
-        with open("main.py", "w") as f:
-            f.write(gitcode)
-            print(fore.GREEN + "Successfully updated, close and open main.py")
-            exit(0)
+# print(fore.GREEN + "Checking for potential updates...")
+#gitcode = r.get("https://github.com/maxhithere/UGC-Sniper/blob/main/main.py").text
+#with open("main.py", "r") as f:
+    #if f.read() != gitcode:
+        #print(fore.GREEN + "Found update, updating to newest version..")
+       # with open("main.py", "w") as f:
+            #f.write(gitcode)
+            #print(fore.GREEN + "Successfully updated, close and open main.py")
+           # exit(0)
 
 with open("limiteds.txt", "r") as f:
     limiteds = f.read().replace(" ", "").split(",")
