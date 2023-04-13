@@ -16,7 +16,7 @@ s = r.Session()
 
 # checking for update
 print(fore.GREEN + "Checking for potential updates...")
-gitcode = r.get("https://github.com/maxhithere/UGC-Sniper/edit/main/main.py").text
+gitcode = r.get("https://github.com/maxhithere/UGC-Sniper/blob/main/main.py").text
 with open("main.py", "r") as f:
     if f.read() != gitcode:
         print(fore.GREEN + "Found update, updating to newest version..")
