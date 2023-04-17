@@ -65,7 +65,7 @@ def get_x_token():
 
 
 def buy(json, itemid, productid, prox, session):
-    print(fore.GREEN + "BUYING LIMITED: " + productid)
+    print(fore.GREEN + "BUYING LIMITED")
     
 
     data = {
