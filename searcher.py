@@ -91,7 +91,7 @@ async def main():
                     file.truncate()
                     file.write(f"{item['id']}")
                     input_data = "regular\n" 
-                    process = subprocess.Popen(["python", "test.py"], stdin=subprocess.PIPE) #executes main file to buy
+                    process = subprocess.Popen(["python", "main.py"], stdin=subprocess.PIPE) #executes main file to buy | change to proxyless.py if using proxyless version
                     process.communicate(input=input_data.encode())
         await asyncio.sleep(3.6)
 
