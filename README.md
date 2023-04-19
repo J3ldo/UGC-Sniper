@@ -12,7 +12,7 @@ Auto closes? https://discord.gg/BKZSf2ctUY
 
 
 ```
-++ ugc searcher
+++ ugc searcher + async
 ++ proxyless version
 ++ modes
 ++ auto updater
