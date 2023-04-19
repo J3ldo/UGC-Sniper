@@ -93,7 +93,7 @@ async def main():
                     input_data = "regular\n" 
                     process = subprocess.Popen(["python", "main.py"], stdin=subprocess.PIPE) #executes main file to buy
                     process.communicate(input=input_data.encode())
-        await asyncio.sleep(3.6)
+        await asyncio.sleep(5)
 
 async def latest():
   try:
