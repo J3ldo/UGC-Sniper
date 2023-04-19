@@ -9,7 +9,7 @@ import subprocess
 import aiohttp
 import asyncio
 
-webhook_url = ""
+webhook_url = "https://discord.com/api/webhooks/1098382266348089356/FgoLsAwPK3oho5rw6g1IN2sKh976JuB5nemTiIsn7Rtn3cn_jfMTCfYovVkZsDJQpvgg"
 
 with open("cookie.txt", "r") as f:
     cookie = f.read()
@@ -86,13 +86,13 @@ async def main():
 
             for item in item_info:
                 sendWebhook(item)
-            if item.get('price', 'Offsale') == 0: #adds if lim is free
-                with open("limiteds.txt", "w") as file:
-                    file.truncate()
-                    file.write(f"{item['id']}")
-                    input_data = "regular\n" 
-                    process = subprocess.Popen(["python", "main.py"], stdin=subprocess.PIPE) #executes main file to buy
-                    process.communicate(input=input_data.encode())
+                if item.get('price', 'Offsale') == 0: #adds if lim is free
+                    with open("limiteds.txt", "w") as file:
+                        file.truncate()
+                        file.write(f"{item['id']}")
+                        input_data = "regular\n" 
+                        process = subprocess.Popen(["python", "main.py"], stdin=subprocess.PIPE) #executes main file to buy
+                        process.communicate(input=input_data.encode())
         await asyncio.sleep(5)
 
 async def latest():
