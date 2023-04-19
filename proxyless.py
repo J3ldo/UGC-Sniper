@@ -1,0 +1,216 @@
+import requests as r
+from threading import Thread
+import os
+import uuid
+import time
+import datetime
+from itertools import cycle
+import colored
+from colored import fore, back, style
+import discord_webhook
+from discord_webhook import DiscordWebhook, DiscordEmbed
+from rich import print as rprint
+ 
+ 
+webhook = DiscordWebhook(url='')
+s = r.Session()
+productid = None
+mode_time = False
+
+def betterPrint(content):
+    now = time.strftime('%r')
+    rprint(f"[bold grey53][{now}] [/] {content}")
+
+betterPrint("[aquamarine1]checking for potential updates...")
+gitcode = r.get("https://raw.githubusercontent.com/maxhithere/UGC-Sniper/main/main.py").text
+with open("main.py", "r") as f:
+    if f.read() != gitcode:
+        betterPrint("[aquamarine1]found update! updating code...")
+        with open("main.py", "w") as f:
+            f.write(gitcode)
+            betterPrint("[aquamarine1]updated code! restart the sniper to use the newest version")
+            exit(0)
+ 
+with open("limiteds.txt", "r") as f:
+    limiteds = f.read().replace(" ", "").split(",")
+ 
+with open("cookie.txt", "r") as f:
+    cookie = f.read()
+
+try:
+    user_id = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookie}).json()["id"]
+except:
+    betterPrint("[red3]Invalid Cookie")
+ 
+x_token = ""
+x_lims = 0
+x_proxy = 0
+stats = f"{fore.GREEN}Sniping"
+ 
+modes = ["regular", "afk", "time"]
+print(fore.LIGHT_BLUE + f"[>>] Choose mode: {', '.join(modes)}")
+mode = input(fore.BLUE + f"   [>>] ")
+if mode not in modes:
+    betterPrint("[red3]Invalid Mode Selected")
+    exit()
+ 
+if mode == "regular":
+    settle = 0.5
+elif mode == "afk":
+    settle = 1.3
+else:
+    mode_time = True
+    print(fore.LIGHT_BLUE + "[>>] Enter number of minutes untill ugc releases: ")
+    global minutes
+    minutes = int(input(fore.BLUE + "   [>>] "))
+    betterPrint(f"[violet][*] Sniper will run for {minutes} minutes before speed sniping")
+    time.sleep(3)
+    settle = 0.5
+ 
+def run(speed, color):
+    os.system("cls")
+    print(
+        f"{fore.WHITE}[Time: {fore.YELLOW}{round(time.perf_counter()-start, 3)}{fore.WHITE}]\n  → {fore.WHITE}[Speed: {fore.YELLOW}{speed}{fore.WHITE}]\n{fore.WHITE}[Bought UGCs: {fore.GREEN}{x_lims}{fore.WHITE}]\n{fore.WHITE}[Status: {fore.YELLOW}{stats}{fore.WHITE}]"
+    )
+ 
+def statusCMD(got):
+    global stats
+    stats = got
+ 
+def boughtLim():
+    global x_lims
+    x_lims = x_lims + 1
+ 
+def get_x_token():
+    global x_token
+    x_token = r.post("https://auth.roblox.com/v2/logout",
+                     cookies={".ROBLOSECURITY": cookie}).headers["x-csrf-token"]
+ 
+    while 1:
+        x_token = r.post("https://auth.roblox.com/v2/logout",
+                         cookies={".ROBLOSECURITY": cookie}).headers["x-csrf-token"]
+        time.sleep(248)    
+
+
+
+def buy(json, itemid, productid, session, itemName, itemQuan, itemSerial, itemID):
+    betterPrint("[aquamarine1]Buying Limited")
+
+    data = {
+        "collectibleItemId": itemid,
+        "expectedCurrency": 1,
+        "expectedPrice": 0,
+        "expectedPurchaserId": user_id,
+        "expectedPurchaserType": "User",
+        "expectedSellerId": json["creatorTargetId"],
+        "expectedSellerType": "User",
+        "idempotencyKey": "random uuid4 string that will be your key or smthn",
+        "collectibleProductId": productid
+    }
+
+    while 1:
+        try:
+            data["idempotencyKey"] = str(uuid.uuid4())
+            bought = session.post(f"https://apis.roblox.com/marketplace-sales/v1/item/{itemid}/purchase-item", json=data, headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie})
+        except:
+            betterPrint('[red3]ERROR CAUGHT')
+            continue
+
+        if bought.reason == "Too Many Requests":
+            betterPrint("[red3]Too many requests, waiting 5 seconds..")
+            time.sleep(5)
+            continue
+
+        try:
+            bought = bought.json()
+        except:
+            print(bought.reason)
+            betterPrint("[yellow]Json decoder error whilst trying to buy item.")
+            continue
+
+        if not bought["purchased"]:
+            betterPrint(f"[red3]Failed buying the limited, trying again.. Info: {bought} - {data}")
+        else:
+            betterPrint(f"[aquamarine1]Successfully bought the limited! Info: {bought} - {data}")
+            embed = DiscordEmbed(title='Purchased Limited', description='You successfully sniped a limited!', color='03b2f8')
+            embed.add_embed_field(name=f'Item', value=f'[{itemName}](https://www.roblox.com/catalog/{itemID})')
+            embed.add_embed_field(name=f'Stock', value=f'{itemQuan}')
+            embed.add_embed_field(name=f'Recieved', value=f'{x_lims + 1}')
+            embed.add_embed_field(name=f'Serial', value=f'#{itemSerial}')
+            webhook.add_embed(embed)
+            webhook.execute()
+            webhook.remove_embeds()
+            boughtLim()
+            break
+
+        try:
+            info = session.post("https://catalog.roblox.com/v1/catalog/items/details",
+                json={"items": [{"itemType": "Asset", "id": int(limited)}]},
+                headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookie})
+        except:
+            betterPrint('[red3]ERROR CAUGHT')
+
+        try:
+            left = info.json()["data"][0]["unitsAvailableForConsumption"]
+        except:
+            betterPrint(f"[red3]Failed getting stock. Full log: {info.text} - {info.reason}")
+            left = 0
+
+        if left == 0:
+            betterPrint("[red3]Couldn't buy the limited in time")
+            break
+
+ 
+Thread(target=get_x_token).start()
+betterPrint("[violet][*] Starting Sniper")
+ 
+while x_token == "":
+    time.sleep(0.01)
+ 
+cooldown = 60 / (39 / len(limiteds))
+ 
+while 1:
+    start = time.perf_counter()
+ 
+    for limited in limiteds:
+        try:
+            info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
+                           json={"items": [{"itemType": "Asset", "id": int(limited)}]},
+                           headers={"x-csrf-token": x_token},
+                           cookies={".ROBLOSECURITY": cookie},
+                           ).json()["data"][0]
+           
+        except:
+            time.sleep(5)
+            continue
+ 
+        if info.get("priceStatus", "") != "Off Sale" and info.get("collectibleItemId") is not None:
+            productid = r.post("https://apis.roblox.com/marketplace-items/v1/items/details",
+                               json={"itemIds": [info["collectibleItemId"]]},
+                               headers={"x-csrf-token": x_token},
+                               cookies={".ROBLOSECURITY": cookie},
+                               )
+ 
+            try:
+                
+                productid = productid.json()[0]["collectibleProductId"]
+            except:
+                    betterPrint(f"[red3]Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
+                    continue
+            buy(info, info["collectibleItemId"], productid, s, info["name"], info["totalQuantity"], info["totalQuantity"] - info["unitsAvailableForConsumption"], info["id"])
+
+
+        if mode_time == True:
+                betterPrint("[aquamarine1]You picked time. Feel the essence of the sniper and the power of the limiteds. The great fortunes you can make, just by waiting..")
+                betterPrint(f"[pink1][*] You have {minutes} minutes left.")
+                time.sleep(minutes * 60)
+                betterPrint(f"[pink1][*] Time ended. Starting spam sniper.")
+                mode_time = False
+                    
+
+
+
+    taken = time.perf_counter()-start
+    stats = f"{fore.GREEN}Running"
+    time.sleep(settle)  # better wait time
+    run(str(taken), fore.GREEN)
