@@ -9,7 +9,7 @@ import subprocess
 import aiohttp
 import asyncio
 
-webhook_url = "https://discord.com/api/webhooks/1098382266348089356/FgoLsAwPK3oho5rw6g1IN2sKh976JuB5nemTiIsn7Rtn3cn_jfMTCfYovVkZsDJQpvgg"
+webhook_url = ""
 
 with open("cookie.txt", "r") as f:
     cookie = f.read()
