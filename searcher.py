@@ -86,14 +86,14 @@ async def main():
 
             for item in item_info:
                 sendWebhook(item)
-            if item.get('price', 'Offsale') == 0: #adds if lim is free
-                with open("limiteds.txt", "w") as file:
-                    file.truncate()
-                    file.write(f"{item['id']}")
-                    input_data = "regular\n" 
-                    process = subprocess.Popen(["python", "main.py"], stdin=subprocess.PIPE) #executes main file to buy | change to proxyless.py if using proxyless version
-                    process.communicate(input=input_data.encode())
-        await asyncio.sleep(3.6)
+                if item.get('price', 'Offsale') == 0: #adds if lim is free
+                    with open("limiteds.txt", "w") as file:
+                        file.truncate()
+                        file.write(f"{item['id']}")
+                        input_data = "regular\n" 
+                        process = subprocess.Popen(["python", "main.py"], stdin=subprocess.PIPE) #executes main file to buy
+                        process.communicate(input=input_data.encode())
+                        await asyncio.sleep(3.6)
 
 async def latest():
   try:
