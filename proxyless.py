@@ -10,9 +10,12 @@ from colored import fore, back, style
 import discord_webhook
 from discord_webhook import DiscordWebhook, DiscordEmbed
 from rich import print as rprint
+import json
+
+openjson = open('config.json') 
+conf = json.load(openjson)
  
- 
-webhook = DiscordWebhook(url='')
+webhook = DiscordWebhook(url=conf["sniperWebhookURL"]) # put a random value in sniperWebhookURL value if you don't want to use a webhook even if webhook is off
 s = r.Session()
 productid = None
 mode_time = False
@@ -131,6 +134,8 @@ def buy(json, itemid, productid, session, itemName, itemQuan, itemSerial, itemID
         if not bought["purchased"]:
             betterPrint(f"[red3]Failed buying the limited, trying again.. Info: {bought} - {data}")
         else:
+            betterPrint(f"[aquamarine1]Successfully bought limited! Info: {bought} - {data}")
+        if conf["webhook"] == True:
             betterPrint(f"[aquamarine1]Successfully bought the limited! Info: {bought} - {data}")
             embed = DiscordEmbed(title='Purchased Limited', description='You successfully sniped a limited!', color='03b2f8')
             embed.add_embed_field(name=f'Item', value=f'[{itemName}](https://www.roblox.com/catalog/{itemID})')
