@@ -21,15 +21,15 @@ def betterPrint(content):
     now = time.strftime('%r')
     rprint(f"[bold grey53][{now}] [/] {content}")
 
-betterPrint("[aquamarine1]checking for potential updates...")
-gitcode = r.get("https://raw.githubusercontent.com/maxhithere/UGC-Sniper/main/main.py").text
-with open("main.py", "r") as f:
-    if f.read() != gitcode:
-        betterPrint("[aquamarine1]found update! updating code...")
-        with open("main.py", "w") as f:
-            f.write(gitcode)
-            betterPrint("[aquamarine1]updated code! restart the sniper to use the newest version")
-            exit(0)
+# betterPrint("[aquamarine1]checking for potential updates...")
+# gitcode = r.get("https://raw.githubusercontent.com/maxhithere/UGC-Sniper/main/main.py").text
+# with open("main.py", "r") as f:
+#     if f.read() != gitcode:
+#         betterPrint("[aquamarine1]found update! updating code...")
+#         with open("main.py", "w") as f:
+#             f.write(gitcode)
+#             betterPrint("[aquamarine1]updated code! restart the sniper to use the newest version")
+#             exit(0)
  
 with open("limiteds.txt", "r") as f:
     limiteds = f.read().replace(" ", "").split(",")
