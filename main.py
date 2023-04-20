@@ -10,9 +10,13 @@ from colored import fore, back, style
 import discord_webhook
 from discord_webhook import DiscordWebhook, DiscordEmbed
 from rich import print as rprint
+import json
+
+
+openjson = open('config.json') 
+conf = json.load(openjson)
  
- 
-#webhook = DiscordWebhook(url='')
+webhook = DiscordWebhook(url=conf["sniperWebhookURL"]) # put a random value in sniperWebhookURL value if you don't want to use a webhook even if webhook is off
 s = r.Session()
 productid = None
 mode_time = False
@@ -21,21 +25,20 @@ def betterPrint(content):
     now = time.strftime('%r')
     rprint(f"[bold grey53][{now}] [/] {content}")
 
-# betterPrint("[aquamarine1]checking for potential updates...")
-# gitcode = r.get("https://raw.githubusercontent.com/maxhithere/UGC-Sniper/main/main.py").text
-# with open("main.py", "r") as f:
-#     if f.read() != gitcode:
-#         betterPrint("[aquamarine1]found update! updating code...")
-#         with open("main.py", "w") as f:
-#             f.write(gitcode)
-#             betterPrint("[aquamarine1]updated code! restart the sniper to use the newest version")
-#             exit(0)
+betterPrint("[aquamarine1]checking for potential updates...")
+gitcode = r.get("https://raw.githubusercontent.com/maxhithere/UGC-Sniper/main/main.py").text
+with open("main.py", "r") as f:
+    if f.read() != gitcode:
+        betterPrint("[aquamarine1]found update! updating code...")
+        with open("main.py", "w") as f:
+            f.write(gitcode)
+            betterPrint("[aquamarine1]updated code! restart the sniper to use the newest version")
+            exit(0)
  
 with open("limiteds.txt", "r") as f:
     limiteds = f.read().replace(" ", "").split(",")
  
-with open("cookie.txt", "r") as f:
-    cookie = f.read()
+    cookie = conf["cookie"]
  
 with open("proxies.txt", "r") as f:
     proxies = f.read().splitlines()
@@ -142,17 +145,18 @@ def buy(json, itemid, productid, prox, session, itemName, itemQuan, itemSerial, 
             continue
 
         if not bought["purchased"]:
-            betterPrint(f"[red3]Failed buying the limited, trying again.. Info: {bought} - {data}")
+            betterPrint(f"[red3]Failed buying limited, trying again.. Info: {bought} - {data}")
         else:
-            betterPrint(f"[aquamarine1]Successfully bought the limited! Info: {bought} - {data}")
-#             embed = DiscordEmbed(title='Purchased Limited', description='You successfully sniped a limited!', color='03b2f8')
-#             embed.add_embed_field(name=f'Item', value=f'[{itemName}](https://www.roblox.com/catalog/{itemID})')
-#             embed.add_embed_field(name=f'Stock', value=f'{itemQuan}')
-#             embed.add_embed_field(name=f'Recieved', value=f'{x_lims + 1}')
-#             embed.add_embed_field(name=f'Serial', value=f'#{itemSerial}')
-#             webhook.add_embed(embed)
-#             webhook.execute()
-#             webhook.remove_embeds()
+            betterPrint(f"[aquamarine1]Successfully bought limited! Info: {bought} - {data}")
+        if conf["webhook"] == True:
+            embed = DiscordEmbed(title='Purchased Limited', description='You successfully sniped a limited!', color='03b2f8')
+            embed.add_embed_field(name=f'Item', value=f'[{itemName}](https://www.roblox.com/catalog/{itemID})')
+            embed.add_embed_field(name=f'Stock', value=f'{itemQuan}')
+            embed.add_embed_field(name=f'Recieved', value=f'{x_lims + 1}')
+            embed.add_embed_field(name=f'Serial', value=f'#{itemSerial}')
+            webhook.add_embed(embed)
+            webhook.execute()
+            webhook.remove_embeds()
             boughtLim()
             break
 
@@ -192,9 +196,8 @@ while 1:
                            headers={"x-csrf-token": x_token},
                            cookies={".ROBLOSECURITY": cookie},
                            proxies={'http': "http://" + proxy}).json()["data"][0]
-            #print(info)
         except:
-            proxy = next(proxy_pool)  # switch proxy
+            proxy = next(proxy_pool)
             usedProxies(proxy)
             time.sleep(6.9)
             continue
@@ -227,5 +230,5 @@ while 1:
 
     taken = time.perf_counter()-start
     stats = f"{fore.GREEN}Running"
-    time.sleep(settle)  # better wait time
+    time.sleep(settle)
     run(str(taken), fore.GREEN, proxy)
