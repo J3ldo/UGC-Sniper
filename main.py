@@ -148,7 +148,7 @@ def buy(json, itemid, productid, prox, session, itemName, itemQuan, itemSerial, 
             betterPrint(f"[red3]Failed buying limited, trying again.. Info: {bought} - {data}")
         else:
             betterPrint(f"[aquamarine1]Successfully bought limited! Info: {bought} - {data}")
-        if conf["webhook"] == True:
+        if conf["webhookEnabled"] == True:
             embed = DiscordEmbed(title='Purchased Limited', description='You successfully sniped a limited!', color='03b2f8')
             embed.add_embed_field(name=f'Item', value=f'[{itemName}](https://www.roblox.com/catalog/{itemID})')
             embed.add_embed_field(name=f'Stock', value=f'{itemQuan}')
