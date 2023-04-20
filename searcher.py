@@ -96,7 +96,7 @@ async def main():
                 else:
                     print(item)
 
-                snipedIds.append(item[id])
+                snipedIds.append(item['id'])
                 if int(item.get('price', 'Offsale')) == 0: #adds if lim is free
                     with open("limiteds.txt", "w") as file:
                         file.truncate()
