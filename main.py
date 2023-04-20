@@ -12,7 +12,7 @@ from discord_webhook import DiscordWebhook, DiscordEmbed
 from rich import print as rprint
  
  
-webhook = DiscordWebhook(url='')
+#webhook = DiscordWebhook(url='')
 s = r.Session()
 productid = None
 mode_time = False
@@ -145,14 +145,14 @@ def buy(json, itemid, productid, prox, session, itemName, itemQuan, itemSerial, 
             betterPrint(f"[red3]Failed buying the limited, trying again.. Info: {bought} - {data}")
         else:
             betterPrint(f"[aquamarine1]Successfully bought the limited! Info: {bought} - {data}")
-            embed = DiscordEmbed(title='Purchased Limited', description='You successfully sniped a limited!', color='03b2f8')
-            embed.add_embed_field(name=f'Item', value=f'[{itemName}](https://www.roblox.com/catalog/{itemID})')
-            embed.add_embed_field(name=f'Stock', value=f'{itemQuan}')
-            embed.add_embed_field(name=f'Recieved', value=f'{x_lims + 1}')
-            embed.add_embed_field(name=f'Serial', value=f'#{itemSerial}')
-            webhook.add_embed(embed)
-            webhook.execute()
-            webhook.remove_embeds()
+#             embed = DiscordEmbed(title='Purchased Limited', description='You successfully sniped a limited!', color='03b2f8')
+#             embed.add_embed_field(name=f'Item', value=f'[{itemName}](https://www.roblox.com/catalog/{itemID})')
+#             embed.add_embed_field(name=f'Stock', value=f'{itemQuan}')
+#             embed.add_embed_field(name=f'Recieved', value=f'{x_lims + 1}')
+#             embed.add_embed_field(name=f'Serial', value=f'#{itemSerial}')
+#             webhook.add_embed(embed)
+#             webhook.execute()
+#             webhook.remove_embeds()
             boughtLim()
             break
 
