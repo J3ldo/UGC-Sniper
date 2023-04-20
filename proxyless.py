@@ -37,8 +37,7 @@ with open("main.py", "r") as f:
 with open("limiteds.txt", "r") as f:
     limiteds = f.read().replace(" ", "").split(",")
  
-with open("cookie.txt", "r") as f:
-    cookie = f.read()
+cookie = conf["cookie"]
 
 try:
     user_id = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookie}).json()["id"]
