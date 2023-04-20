@@ -215,7 +215,7 @@ while 1:
             except:
                     betterPrint(f"[red3]Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
                     continue
-            buy(info, info["collectibleItemId"], productid, proxy, s, info["name"], info["totalQuantity"], info["totalQuantity"], info["unitsAvailableForConsumption"], info["id"])
+            buy(info, info["collectibleItemId"], productid, proxy, s, info["name"], info["totalQuantity"], info["totalQuantity"] - info["unitsAvailableForConsumption"], info["id"])
 
 
         if mode_time == True:
