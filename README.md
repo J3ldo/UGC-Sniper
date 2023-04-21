@@ -6,9 +6,7 @@ pip install -r requirements
 credits to Shmo1y#1008 for gui updates
 ```
 
-[Guide](< https://docs.google.com/document/d/1bIM-zHvUacxv_QQbjAfNZBQ8jzXQFTMHiuGET-aRzOA/edit>)
-
-Auto closes? https://discord.gg/BKZSf2ctUY
+Need help? https://discord.gg/BKZSf2ctUY
 
 
 ```
