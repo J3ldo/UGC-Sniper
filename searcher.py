@@ -35,8 +35,6 @@ def compare(list1, list2):
         betterPrint("[aquamarine1]searching...")
         return list2
     else:
-        betterPrint(f"[violet]found {len(added_items)} new assets")
-        betterPrint(f"[violet]Assets: {added_items}")
         return added_items
 
 
