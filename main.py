@@ -145,7 +145,7 @@ def buy(json, itemid, productid, prox, session, itemName, itemQuan, itemID):
             continue
             
         if bought['errorMessage'] == 'QuantityExhausted':
-            betterPrint(f"[red3]Too many items being bought at once. Roblox API is heavy ratelimiting.
+            betterPrint(f"[red3]Too many items being bought at once. Roblox API is heavy ratelimiting.")
 
         if not bought["purchased"]:
             betterPrint(f"[red3]Failed buying limited, trying again.. Info: {bought} - {data}")
