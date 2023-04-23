@@ -1,0 +1,9 @@
+    [COLOR_WHITE][Time: [COLOR_YELLOW][time][COLOR_WHITE]]
+        [COLOR_WHITE]--> [Speed: [COLOR_YELLOW][speed][COLOR_WHITE]]
+        [COLOR_WHITE]--> [Ratelimits: [COLOR_RED][ratelimits][COLOR_WHITE]]
+
+    [COLOR_WHITE][Price checks made: [COLOR_GREEN][priceChecks][COLOR_WHITE]]
+    [COLOR_WHITE][Bought UGCs: [COLOR_GREEN][bought][COLOR_WHITE]]
+    [COLOR_WHITE][Changed Proxies: [COLOR_RED][changedProxies][COLOR_WHITE]]
+        [COLOR_WHITE]--> [Current Proxy: [COLOR_YELLOW][currentProxy][COLOR_WHITE]]
+    [COLOR_WHITE][Status: [COLOR_YELLOW][status][COLOR_WHITE]]
