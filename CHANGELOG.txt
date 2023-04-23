@@ -1,0 +1,27 @@
+Merged with maxhithere fork which adds:
+	-Modes
+		- Afk mode for when you want to go afk
+		- Regular use for regular use
+		- Time waits a set amount of time and then starts checking
+		(All of these cooldowns can be set in the config)
+
+	-Proxies
+		- Proxylist location in config
+		- Proxies when buying on/off
+	- Auto update
+
+-Added custom cooldown which override the set cooldowns
+-Multicookie support
+-Custom ratelimit cooldowns
+	- For proxy
+	- For no proxy
+	(Can be set in config.json)
+-Better print
+-Themes
+	- How to make your custom theme	
+	1) Copy paste and rename baseTheme
+	2) Put your path to the theme into current theme in the config
+	3) Edit logo.txt for the logo and printText.txt for the printed text
+	TIP - For all variabled and colours see themes/required.json
+
+
