@@ -46,7 +46,6 @@ except:
  
 x_token = ""
 x_lims = 0
-x_proxy = 0
 stats = f"{fore.GREEN}Sniping"
  
 modes = ["regular", "afk", "time"]
@@ -95,7 +94,7 @@ def get_x_token():
 
 
 
-def buy(json, itemid, productid, prox, session, itemName, itemQuan, itemID):
+def buy(json, itemid, productid, session, itemName, itemQuan, itemID):
     betterPrint("[aquamarine1]Buying Limited")
 
     data = {
@@ -204,7 +203,7 @@ while 1:
             except:
                     betterPrint(f"[red3]Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
                     continue
-            buy(info, info["collectibleItemId"], productid, proxy, s, info["name"], info["totalQuantity"], info["id"])
+            buy(info, info["collectibleItemId"], productid, s, info["name"], info["totalQuantity"], info["id"])
 
 
         if mode_time == True:
