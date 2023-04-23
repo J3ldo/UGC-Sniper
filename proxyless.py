@@ -25,7 +25,7 @@ def betterPrint(content):
     rprint(f"[bold grey53][{now}] [/] {content}")
 
 betterPrint("[aquamarine1]checking for potential updates...")
-gitcode = r.get("https://raw.githubusercontent.com/maxhithere/UGC-Sniper/main/main.py").text
+gitcode = r.get("https://raw.githubusercontent.com/maxhithere/UGC-Sniper/main/proxyless.py").text
 with open("main.py", "r") as f:
     if f.read() != gitcode:
         betterPrint("[aquamarine1]found update! updating code...")
