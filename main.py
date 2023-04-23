@@ -108,7 +108,7 @@ def get_x_token():
 
 
 
-def buy(json, itemid, productid, prox, session, itemName, itemQuan, itemSerial, itemID):
+def buy(json, itemid, productid, prox, session, itemName, itemQuan, itemID):
     betterPrint("[aquamarine1]Buying Limited")
 
     data = {
@@ -143,20 +143,22 @@ def buy(json, itemid, productid, prox, session, itemName, itemQuan, itemSerial, 
             print(bought.reason)
             betterPrint("[yellow]Json decoder error whilst trying to buy item.")
             continue
+            
+        if bought['errorMessage'] == 'QuantityExhausted':
+            betterPrint(f"[red3]Too many items being bought at once. Roblox API is heavy ratelimiting.
 
         if not bought["purchased"]:
             betterPrint(f"[red3]Failed buying limited, trying again.. Info: {bought} - {data}")
-        else:
+                        
+        if bought["purchased"]:
             betterPrint(f"[aquamarine1]Successfully bought limited! Info: {bought} - {data}")
         if conf["webhookEnabled"] == True:
             embed = DiscordEmbed(title='Purchased Limited', description='You successfully sniped a limited!', color='03b2f8')
             embed.add_embed_field(name=f'Item', value=f'[{itemName}](https://www.roblox.com/catalog/{itemID})')
             embed.add_embed_field(name=f'Stock', value=f'{itemQuan}')
             embed.add_embed_field(name=f'Recieved', value=f'{x_lims + 1}')
-            embed.add_embed_field(name=f'Serial', value=f'#{itemSerial}')
             webhook.add_embed(embed)
             webhook.execute()
-            webhook.remove_embeds()
             boughtLim()
             break
 
@@ -197,9 +199,8 @@ while 1:
                            cookies={".ROBLOSECURITY": cookie},
                            proxies={'http': "http://" + proxy}).json()["data"][0]
         except:
-            proxy = next(proxy_pool)
-            usedProxies(proxy)
-            time.sleep(6.9)
+            betterPrint("[yellow1]cookie ratelimited, sleeping for 15 sec.")
+            time.sleep(15)
             continue
  
         if info.get("priceStatus", "") != "Off Sale" and info.get("collectibleItemId") is not None:
@@ -215,7 +216,7 @@ while 1:
             except:
                     betterPrint(f"[red3]Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
                     continue
-            buy(info, info["collectibleItemId"], productid, proxy, s, info["name"], info["totalQuantity"], info["totalQuantity"] - info["unitsAvailableForConsumption"], info["id"])
+            buy(info, info["collectibleItemId"], productid, proxy, s, info["name"], info["totalQuantity"], info["id"])
 
 
         if mode_time == True:
