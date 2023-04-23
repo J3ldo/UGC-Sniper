@@ -26,7 +26,7 @@ Search items based on RAP, Projection detection, alt account support, buying eve
 ## How to use
 
 ### Step 1
-Install python. You first need to install python you can do this [here](https://www.python.org/download). After downloading python you need to install the requests library. You can do this by typing "pip install requests" in the command prompt or if that doesnt work "python -m pip install requests". 
+Install python. You first need to install python you can do this [here](https://www.python.org/download). After downloading python you need to install the requests library. You can do this by typing "pip install requests" and "pip install discord-webhook" in the command prompt or if that doesnt work "python -m pip install requests" and "python -m pip install discord-webhook". 
 
 ### Step 2
 Click on code > download zip. This will download the program as a .zip file after that unpack the installed limited sniper into a directory of choice.
@@ -47,3 +47,10 @@ Asset1, Asset2, Asset3
 ### Step 5
 Just run the main.py file and you will see it starting to check if its free.
 That's all, hope you get some good deals and some good robux, if you do make sure to star this repository.
+
+
+## How to create a theme
+* Copy paste and rename baseTheme
+* Put your path to the theme into current theme in the config
+* Edit logo.txt for the logo and printText.txt for the printed text
+**TIP - For all variabled and colours see themes/required.json**
