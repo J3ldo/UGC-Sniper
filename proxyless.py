@@ -72,7 +72,7 @@ else:
 def run(speed, color):
     os.system("cls")
     print(
-        f"{fore.WHITE}[Time: {fore.YELLOW}{round(time.perf_counter()-start, 3)}{fore.WHITE}]\n  → {fore.WHITE}[Speed: {fore.YELLOW}{speed}{fore.WHITE}]\n{fore.WHITE}[Bought UGCs: {fore.GREEN}{x_lims}{fore.WHITE}]\n{fore.WHITE}[Status: {fore.YELLOW}{stats}{fore.WHITE}]"
+        f"{fore.WHITE}[Time: {fore.YELLOW}{round(time.perf_counter()-start, 3)}{fore.WHITE}]\n  --> {fore.WHITE}[Speed: {fore.YELLOW}{speed}{fore.WHITE}]\n{fore.WHITE}[Bought UGCs: {fore.GREEN}{x_lims}{fore.WHITE}]\n{fore.WHITE}[Status: {fore.YELLOW}{stats}{fore.WHITE}]"
     )
  
 def statusCMD(got):
