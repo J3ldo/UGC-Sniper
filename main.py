@@ -199,9 +199,10 @@ while 1:
                            cookies={".ROBLOSECURITY": cookie},
                            proxies={'http': "http://" + proxy}).json()["data"][0]
         except:
-            betterPrint("[yellow1]cookie ratelimited, sleeping for 15 sec.")
-            time.sleep(15)
-            continue
+            proxy = next(proxy_pool)
+            usedProxies(proxy)
+            betterPrint("[yellow1]cookie ratelimited, sleeping for 5 sec and switching proxy.")
+            time.sleep(5)
  
         if info.get("priceStatus", "") != "Off Sale" and info.get("collectibleItemId") is not None:
             productid = r.post("https://apis.roblox.com/marketplace-items/v1/items/details",
