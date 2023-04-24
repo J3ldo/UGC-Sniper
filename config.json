@@ -6,6 +6,7 @@
     "auto update": true,
     "purchase proxy": false,
     "better print": true,
+    "logo dupe": true,
 
     "mode": "",
     "custom regular cooldown": -1,
