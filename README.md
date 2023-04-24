@@ -1,5 +1,7 @@
 
 # [UGC Sniper]((https://discord.gg/3Uvcf8d9aY))
+The first and best sniper again
+
 A free UGC sniper bot for roblox that sniper free limiteds.
 
 **[Unofficial installation guide](https://docs.google.com/document/d/1VAqSW067-8OlexScBwje-HJcMn7vXJJM3WuRHE97-QU/edit)**
