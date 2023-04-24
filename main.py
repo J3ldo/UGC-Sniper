@@ -2,21 +2,33 @@
 #   Original code, updates, and onwer: Jeldo#9587
 #   Proxy support, fork, better UI: ! max#7948
 
-import requests as r
-from threading import Thread
-import os
-import ctypes
-import copy
-import uuid
-import time
-import datetime
-from itertools import cycle
-import discord_webhook
-from discord_webhook import DiscordWebhook, DiscordEmbed
-import json
+try:
+    import requests as r
+    from threading import Thread
+    import os
+    import ctypes
+    import copy
+    import uuid
+    import time
+    import datetime
+    from itertools import cycle
+    import discord_webhook
+    from discord_webhook import DiscordWebhook, DiscordEmbed
+    import json
+except ModuleNotFoundError:
+    import os
+    print("Didnt install needed modules. Installnig them now")
+    os.system("pip install requests")
+    os.system("pip install discord-webhook")
+    os.system("python -m pip install requests")
+    os.system("python -m pip install discord-webhook")
 
-os.system("cls")
-ctypes.windll.kernel32.SetConsoleTitleW("J3ldo Sniper")
+    print("Successfully installed required modules.")
+    os.system("pause")
+    exit(1)
+
+os.system("cls" if os.name == "nt" else "clear")
+if os.name == "nt": ctypes.windll.kernel32.SetConsoleTitleW("J3ldo Sniper")
 
 with open('config.json', "r") as f:
     conf = json.load(f)
@@ -24,11 +36,13 @@ with open('config.json', "r") as f:
 with open("./themes/required.json", "r") as f:
     theme_info = json.load(f)
 
-webhook = DiscordWebhook(url=conf["webhook"])  # put a random value in sniperWebhookURL value if you don't want to use a webhook even if webhook is off
-s = r.Session()
+webhook = DiscordWebhook(url=conf["webhook"])  # Put a random value in webhook value if you don't want to use a webhook even if webhook is off
+customCooldown = 0
+perSecond = 0
 productid = None
 mode_time = False
 recent_logs = []
+s = r.Session()
 
 
 def textToColour(text: str):
@@ -36,6 +50,19 @@ def textToColour(text: str):
         text = text.replace(key, f"\x1b[38;5;{theme_info['colours'][key]}m")
 
     return text
+
+
+def calculate_cooldown(pause=True):
+    global cooldown, perSecond, customCooldown
+
+    try:
+        cooldown = 60 / (perSecond / len(limiteds))
+    except ZeroDivisionError:
+        betterPrint("[COLOR_RED]No limiteds added, please add a limited for the sniper to work.")
+        if pause: os.system("pause")
+        exit(1)
+
+    if customCooldown >= 0: cooldown = customCooldown
 
 
 def betterPrint(content, log=False):
@@ -71,7 +98,7 @@ if themeConfig["version"] != themeVersion:
     if input(f"[COLOR_RED]  [>>] [COLOR_WHITE]").lower() == "n":
         exit(1)
 
-ctypes.windll.kernel32.SetConsoleTitleW(themeConfig["title"])
+if os.name == "nt": ctypes.windll.kernel32.SetConsoleTitleW(themeConfig["title"])
 
 with open(f"{themeLocation}/{themeConfig['logo']}", "r", encoding="unicode_escape") as f: logo = textToColour(f.read())
 with open(f"{themeLocation}/{themeConfig['printText']}", "r", encoding="unicode_escape") as f: printText = textToColour(f.read())
@@ -96,6 +123,7 @@ cookies = [[i, ""] for i in conf["cookie"]]
 if type(conf["cookie"]) == str:
     with open(conf["cookie"], "r") as f:
         cookies = [[i, ""] for i in f.read().replace(";", "").splitlines()]
+s.cookies.update({".ROBLOSECURITY": cookies[0][0]})
 
 with open(conf["proxies"], "r") as f:
     proxies = f.read().splitlines()
@@ -107,7 +135,7 @@ with open(conf["proxies"], "r") as f:
         proxy = next(proxy_pool)
 
 try:
-    info = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookies[0][0]}).json()
+    info = s.get("https://users.roblox.com/v1/users/authenticated").json()
 
     user_id = info["id"]
     user_name = info["name"]
@@ -151,23 +179,12 @@ if mode not in modes:
     exit(1)
 
 if mode == "regular":
-    try:
-        cooldown = 60 / (80 / len(limiteds))
-    except ZeroDivisionError:
-        betterPrint("[COLOR_RED]No limiteds added, please add a limited for the sniper to work.")
-        os.system("pause")
-        exit(1)
-
-    cooldown = conf["custom afk cooldown"] if conf["custom regular cooldown"] >= 0 else cooldown
+    customCooldown = conf["custom regular cooldown"]
+    perSecond = 50
 
 elif mode == "afk":
-    try:
-        cooldown = 60 / (50 / len(limiteds))
-    except ZeroDivisionError:
-        betterPrint("[COLOR_RED]No limiteds added, please add a limited for the sniper to work.")
-        os.system("pause")
-        exit(1)
-    cooldown = conf["custom afk cooldown"] if conf["custom afk cooldown"] >= 0 else cooldown
+    customCooldown = conf["custom afk cooldown"]
+    perSecond = 40
 
 else:
     mode_time = True
@@ -177,11 +194,12 @@ else:
     betterPrint(f"[COLOR_VIOLET][*] Sniper will run for {minutes} minutes / {minutes*60} seconds before speed sniping")
     time.sleep(3)
 
-    cooldown = conf["custom time cooldown"]
+    customCooldown = conf["custom time cooldown"]
     if len(limiteds) == 0:
         betterPrint("[COLOR_RED]No limiteds added, please add a limited for the sniper to work.")
         os.system("pause")
         exit(1)
+calculate_cooldown()
 
 def get_x_token():
     global x_token
@@ -237,7 +255,8 @@ def printall():
             iteration = 0
             recent_logs = []
 
-        os.system("cls")
+        os.system("cls" if os.name == "nt" else "clear")
+        if conf["logo dupe"]: print(logo)
         print(textToVar(printText)+"\n\nLogs:\n"+"\n".join(i for i in recent_logs))
 
         time.sleep(conf["print update cooldown"])
@@ -363,7 +382,10 @@ def buy(json, itemid, productid, itemName, itemQuan, assetid):
                 boughtsession = 0
 
         if left == 0 or soldout:
-            betterPrint("[COLOR_RED]Couldn't buy the limited in time")
+            betterPrint("[COLOR_RED]Limited sold out.")
+            limiteds.remove(str(assetid))
+
+            calculate_cooldown(False)
             break
 
     boughtsession = 0
@@ -434,4 +456,4 @@ while 1:
         time.sleep(cooldown-taken)
 
     checks_made += len(limiteds)
-    speed = round(taken, 2)
+    speed = round(time.perf_counter()-start, 2)
