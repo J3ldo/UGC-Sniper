@@ -247,7 +247,7 @@ def getStock():
         info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
                             json={"items": [{"itemType": "Asset", "id": int(limited)}]},
                             headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookies[0][0]},
-                            proxies={'http': "http://" + prox} if proxiesOn else {})
+                            proxies={'http': "http://" + proxy} if proxiesOn else {})
     except:
         betterPrint('[COLOR_RED]ERROR CAUGHT WHILST TRYING TO GET THE STOCK')
         return 1
