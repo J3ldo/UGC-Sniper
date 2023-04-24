@@ -1,4 +1,10 @@
-W max
+
+**WILL MOSTLY BE UPDATED ON https://github.com/J3ldo/UGC-Sniper**
+ㅤ
+ㅤ
+ㅤ
+ㅤ
+ㅤ
 
 ```
 forked
