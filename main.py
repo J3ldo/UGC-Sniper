@@ -229,7 +229,8 @@ def textToVar(text: str):
 
 def printall():
     global recent_logs
-
+    print(logo)
+    time.sleep(2)
     iteration = 0
     while 1:
         if iteration > 3:
@@ -237,7 +238,7 @@ def printall():
             recent_logs = []
 
         os.system("cls")
-        print(logo+textToVar(printText)+"\n\nLogs:\n"+"\n".join(i for i in recent_logs))
+        print(textToVar(printText)+"\n\nLogs:\n"+"\n".join(i for i in recent_logs))
 
         time.sleep(conf["print update cooldown"])
         iteration += 1
