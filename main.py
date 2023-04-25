@@ -26,9 +26,8 @@ except ModuleNotFoundError:
     print("Successfully installed required modules.")
     os.system("pause")
     exit(1)
-
-os.system("cls" if os.name == "nt" else "clear")
-if os.name == "nt": ctypes.windll.kernel32.SetConsoleTitleW("J3ldo Sniper")
+os.system("cls")
+ctypes.windll.kernel32.SetConsoleTitleW("J3ldo Sniper")
 
 with open('config.json', "r") as f:
     conf = json.load(f)
@@ -36,13 +35,18 @@ with open('config.json', "r") as f:
 with open("./themes/required.json", "r") as f:
     theme_info = json.load(f)
 
-webhook = DiscordWebhook(url=conf["webhook"])  # Put a random value in webhook value if you don't want to use a webhook even if webhook is off
-customCooldown = 0
-perSecond = 0
+if conf["webhook"] == "webhook.txt":
+    with open("webhook.txt", "r+") as f:
+        read = f.read()
+        webhook = DiscordWebhook(url=f.read())
+
+else:
+    webhook = DiscordWebhook(url=conf["webhook"])
+
+s = r.Session()
 productid = None
 mode_time = False
 recent_logs = []
-s = r.Session()
 
 
 def textToColour(text: str):
@@ -50,19 +54,6 @@ def textToColour(text: str):
         text = text.replace(key, f"\x1b[38;5;{theme_info['colours'][key]}m")
 
     return text
-
-
-def calculate_cooldown(pause=True):
-    global cooldown, perSecond, customCooldown
-
-    try:
-        cooldown = 60 / (perSecond / len(limiteds))
-    except ZeroDivisionError:
-        betterPrint("[COLOR_RED]No limiteds added, please add a limited for the sniper to work.")
-        if pause: os.system("pause")
-        exit(1)
-
-    if customCooldown >= 0: cooldown = customCooldown
 
 
 def betterPrint(content, log=False):
@@ -77,32 +68,31 @@ def betterPrint(content, log=False):
 if conf["auto update"]:
     betterPrint("[COLOR_AQUAMARINE_1A]Checking for potential updates...")
     gitcode = r.get("https://raw.githubusercontent.com/J3ldo/UGC-Sniper/main/main.py").text
-    with open("main.py", "r+") as f:
-        if f.read() != gitcode:
+    with open("main.py", "w+") as f:
+        if gitcode not in f.read():
             betterPrint("[COLOR_AQUAMARINE_1A]Found update! updating code...")
             f.write(gitcode)
             betterPrint("[COLOR_AQUAMARINE_1A]Updated code! restart the sniper to use the newest version")
             os.system("pause")
             exit(0)
 
-
 # Initialize themes
 themeVersion = "1.0.0"
 
 themeLocation = conf["current theme"]
-with open(themeLocation+"/config.json", "r") as f:
+with open(themeLocation + "/config.json", "r") as f:
     themeConfig = json.load(f)
 if themeConfig["version"] != themeVersion:
     print(textToColour(f"[COLOR_RED]DEPRECTATION WARNING - Version of the theme is deperecated, theme may not work.\n"
-          f"Do you still want to continue? Y/N[COLOR_WHITE]"))
+                       f"Do you still want to continue? Y/N[COLOR_WHITE]"))
     if input(f"[COLOR_RED]  [>>] [COLOR_WHITE]").lower() == "n":
         exit(1)
 
-if os.name == "nt": ctypes.windll.kernel32.SetConsoleTitleW(themeConfig["title"])
+ctypes.windll.kernel32.SetConsoleTitleW(themeConfig["title"])
 
 with open(f"{themeLocation}/{themeConfig['logo']}", "r", encoding="unicode_escape") as f: logo = textToColour(f.read())
-with open(f"{themeLocation}/{themeConfig['printText']}", "r", encoding="unicode_escape") as f: printText = textToColour(f.read())
-
+with open(f"{themeLocation}/{themeConfig['printText']}", "r", encoding="unicode_escape") as f: printText = textToColour(
+    f.read())
 
 limiteds = conf["limiteds"]
 if type(limiteds) == str:
@@ -110,7 +100,8 @@ if type(limiteds) == str:
         contents = f.read()
 
         if "com" in contents:
-            print(textToColour("[COLOR_RED]Invalid id format given, please make sure its only the id not the full link."))
+            print(
+                textToColour("[COLOR_RED]Invalid id format given, please make sure its only the id not the full link."))
             os.system("pause")
             exit(0)
 
@@ -123,7 +114,6 @@ cookies = [[i, ""] for i in conf["cookie"]]
 if type(conf["cookie"]) == str:
     with open(conf["cookie"], "r") as f:
         cookies = [[i, ""] for i in f.read().replace(";", "").splitlines()]
-s.cookies.update({".ROBLOSECURITY": cookies[0][0]})
 
 with open(conf["proxies"], "r") as f:
     proxies = f.read().splitlines()
@@ -135,19 +125,20 @@ with open(conf["proxies"], "r") as f:
         proxy = next(proxy_pool)
 
 try:
-    info = s.get("https://users.roblox.com/v1/users/authenticated").json()
+    info = r.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": cookies[0][0]}).json()
 
     user_id = info["id"]
     user_name = info["name"]
     display_name = info["displayName"]
 except KeyError:
-    betterPrint("[COLOR_RED]Invalid Cookie, please check that you have no newlines, spaces or commas at the end or in the file.")
+    betterPrint(
+        "[COLOR_RED]Invalid Cookie, please check that you have no newlines, spaces or commas at the end or in the file.")
     os.system("pause")
     exit(1)
 
 print(textToColour(f"[COLOR_LIGHT_BLUE]UGC-Sniper made by: Jeldo#9587 (J3ldo) and ! max#7948 (maxhithere)\n"
-      f"[COLOR_LIGHT_BLUE]Discord server: https://discord.com/invite/3Uvcf8d9aY)"))
-time.sleep(3)
+                   f"[COLOR_LIGHT_BLUE]Discord server: https://discord.com/invite/3Uvcf8d9aY)"))
+time.sleep(0.1)
 
 print(textToColour(f"[COLOR_LIGHT_BLUE]Logged in as {user_name}"))
 
@@ -179,27 +170,39 @@ if mode not in modes:
     exit(1)
 
 if mode == "regular":
-    customCooldown = conf["custom regular cooldown"]
-    perSecond = 50
+    try:
+        cooldown = 60 / (80 / len(limiteds))
+    except ZeroDivisionError:
+        betterPrint("[COLOR_RED]No limiteds added, please add a limited for the sniper to work.")
+        os.system("pause")
+        exit(1)
+
+    cooldown = conf["custom afk cooldown"] if conf["custom regular cooldown"] >= 0 else cooldown
 
 elif mode == "afk":
-    customCooldown = conf["custom afk cooldown"]
-    perSecond = 40
+    try:
+        cooldown = 60 / (50 / len(limiteds))
+    except ZeroDivisionError:
+        betterPrint("[COLOR_RED]No limiteds added, please add a limited for the sniper to work.")
+        os.system("pause")
+        exit(1)
+    cooldown = conf["custom afk cooldown"] if conf["custom afk cooldown"] >= 0 else cooldown
 
 else:
     mode_time = True
     if minutes < 0:
         print(textToColour("[COLOR_LIGHT_BLUE][>>] Enter number of minutes untill ugc releases: "))
         minutes = int(input(textToColour("[COLOR_LIGHT_BLUE]   [>>] ")))
-    betterPrint(f"[COLOR_VIOLET][*] Sniper will run for {minutes} minutes / {minutes*60} seconds before speed sniping")
+    betterPrint(
+        f"[COLOR_VIOLET][*] Sniper will run for {minutes} minutes / {minutes * 60} seconds before speed sniping")
     time.sleep(3)
 
-    customCooldown = conf["custom time cooldown"]
+    cooldown = conf["custom time cooldown"]
     if len(limiteds) == 0:
         betterPrint("[COLOR_RED]No limiteds added, please add a limited for the sniper to work.")
         os.system("pause")
         exit(1)
-calculate_cooldown()
+
 
 def get_x_token():
     global x_token
@@ -209,11 +212,11 @@ def get_x_token():
     while 1:
         for idx, _ in enumerate(cookies):
             cookies[idx][1] = r.post("https://auth.roblox.com/v2/logout",
-                             cookies={".ROBLOSECURITY": cookies[idx][0]}).headers["x-csrf-token"]
+                                     cookies={".ROBLOSECURITY": cookies[idx][0]}).headers["x-csrf-token"]
             if idx == 0:
                 x_token = cookies[idx][1]
 
-            time.sleep(300/len(cookies))
+            time.sleep(300 / len(cookies))
 
 
 def textToVar(text: str):
@@ -245,29 +248,30 @@ def textToVar(text: str):
 
     return text
 
+
 def printall():
     global recent_logs
-    print(logo)
-    time.sleep(2)
     iteration = 0
+    print(logo)
     while 1:
         if iteration > 3:
             iteration = 0
             recent_logs = []
 
-        os.system("cls" if os.name == "nt" else "clear")
-        if conf["logo dupe"]: print(logo)
-        print(textToVar(printText)+"\n\nLogs:\n"+"\n".join(i for i in recent_logs))
+        os.system("cls")
+        if conf.get("logo dupe", True): print(logo)
+        print(textToVar(printText) + "\n\nLogs:\n" + "\n".join(i for i in recent_logs))
 
         time.sleep(conf["print update cooldown"])
         iteration += 1
 
+
 def getStock():
     try:
         info = r.post("https://catalog.roblox.com/v1/catalog/items/details",
-                            json={"items": [{"itemType": "Asset", "id": int(limited)}]},
-                            headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookies[0][0]},
-                            proxies={'http': "http://" + proxy} if proxiesOn else {})
+                      json={"items": [{"itemType": "Asset", "id": int(limited)}]},
+                      headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookies[0][0]},
+                      proxies={'http': "http://" + proxy} if proxiesOn else {})
     except:
         betterPrint('[COLOR_RED]ERROR CAUGHT WHILST TRYING TO GET THE STOCK')
         return 1
@@ -286,8 +290,8 @@ def rawbuy(data, other, cookie):
 
     try:
         _bought = r.post(f"https://apis.roblox.com/marketplace-sales/v1/item/{other['itemid']}/purchase-item",
-                              json=data, headers={"x-csrf-token": cookie[1]}, cookies={".ROBLOSECURITY": cookie[0]},
-                              proxies={'http': "http://" + proxy} if proxiesOn and conf["purchase proxy"] else {})
+                         json=data, headers={"x-csrf-token": cookie[1]}, cookies={".ROBLOSECURITY": cookie[0]},
+                         proxies={'http': "http://" + proxy} if proxiesOn and conf["purchase proxy"] else {})
     except:
         betterPrint('[COLOR_RED]ERROR CAUGHT WHILST TRYING TO PURHCASE ITEM')
         return
@@ -305,9 +309,9 @@ def rawbuy(data, other, cookie):
     try:
         _bought = _bought.json()
     except:
-        betterPrint(f"[COLOR_YELLOW]Json decoder error whilst trying to buy item. - Reason {_bought.status_code}-{_bought.reason}")
+        betterPrint(
+            f"[COLOR_YELLOW]Json decoder error whilst trying to buy item. - Reason {_bought.status_code}-{_bought.reason}")
         return
-
 
     if _bought['purchaseResult'] == 'Flooded':
         betterPrint(f"[COLOR_GREEN]Bought maximum amount of items on account. Switching cookies")
@@ -326,24 +330,24 @@ def rawbuy(data, other, cookie):
         boughtsession += 1
 
         if conf["webhook enabled"] is True:
-
             embed = DiscordEmbed(title='Purchased Limited', description='You successfully sniped a limited!',
                                  color='03b2f8')
-            embed.add_embed_field(name=f'Item', value=f'[{other["itemName"]}](https://www.roblox.com/catalog/{other["assetid"]})')
+            embed.add_embed_field(name=f'Item',
+                                  value=f'[{other["itemName"]}](https://www.roblox.com/catalog/{other["assetid"]})')
             embed.add_embed_field(name=f'Stock', value=f'{other["left"]}')
             embed.add_embed_field(name=f'Recieved', value=f'{_bought}')
             webhook.add_embed(embed)
             webhook.execute()
 
 
-def buy(json, itemid, productid, itemName, itemQuan, assetid):
+def buy(json, itemid, productid, itemName, itemQuan, assetid, ugcPrice):
     global bought, boughtsession, switchcookie, currentCookie
     betterPrint("[COLOR_AQUAMARINE_1A]Buying Limited")
 
     data = {
         "collectibleItemId": itemid,
         "expectedCurrency": 1,
-        "expectedPrice": 0,
+        "expectedPrice": ugcPrice,
         "expectedPurchaserId": user_id,
         "expectedPurchaserType": "User",
         "expectedSellerId": json["creatorTargetId"],
@@ -382,10 +386,7 @@ def buy(json, itemid, productid, itemName, itemQuan, assetid):
                 boughtsession = 0
 
         if left == 0 or soldout:
-            betterPrint("[COLOR_RED]Limited sold out.")
-            limiteds.remove(str(assetid))
-
-            calculate_cooldown(False)
+            betterPrint("[COLOR_RED]Couldn't buy the limited in time")
             break
 
     boughtsession = 0
@@ -409,6 +410,8 @@ if mode_time is True:
     betterPrint(f"[COLOR_PINK_1][*] Time ended. Starting spam sniper.")
 
 Thread(target=printall).start()
+
+price = 0
 while 1:
     start = time.perf_counter()
 
@@ -419,6 +422,8 @@ while 1:
                           headers={"x-csrf-token": x_token},
                           cookies={".ROBLOSECURITY": cookies[0][0]},
                           proxies={'http': "http://" + proxy} if proxiesOn else {}).json()["data"][0]
+
+            price = info["price"]
         except:
             if proxiesOn:
                 proxy = next(proxy_pool)  # switch proxy
@@ -446,14 +451,26 @@ while 1:
                 betterPrint(
                     f"[COLOR_RED]Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
                 continue
-            buy(info, info["collectibleItemId"], productid, info["name"], info["totalQuantity"], info["id"])
+
+            if conf["purchase paid ugcs"] is True and bought >= conf["purchase paid ugcs amount"]:
+                betterPrint(f"[COLOR_RED]You have bought the maximum amount of paid ugcs from your config.")
+                continue
+            if price != 0 and conf.get("purchase paid ugcs", False) is False:
+                continue
+            if price > conf.get("purchase paid ugcs price under", 0):
+                print(f"[COLOR_RED]Price of item is higher than configured max price. Price: {info['price']}")
+                limiteds.remove(limited)
+                continue
+
+            buy(info, info["collectibleItemId"], productid, info["name"], info["totalQuantity"], info["id"], price)
 
     taken = time.perf_counter() - start
-    _time = taken
+    _time = round(taken, 2)
     stats = textToColour(f"[COLOR_GREEN]Running")
 
     if taken < cooldown:
-        time.sleep(cooldown-taken)
+        time.sleep(cooldown - taken)
 
     checks_made += len(limiteds)
-    speed = round(time.perf_counter()-start, 2)
+    speed = round(time.perf_counter() - start, 2)
+    
