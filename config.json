@@ -3,7 +3,7 @@
     "webhook": "",
     "ping everyone": true,
 
-    "auto update": true,
+    "auto update": false,
     "purchase proxy": false,
     "better print": true,
     "logo dupe": true,
