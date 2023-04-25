@@ -18,6 +18,10 @@
 
     "proxy ratelimit cooldown": 0,
     "ratelimit cooldown": 5,
+    
+    "purchase paid ugcs": false,
+    "paid ugcs max price": 0,
+    "purchase paid ugcs amount": 0,
 
     "current theme": "./themes/baseTheme",
 
