@@ -1,5 +1,5 @@
 # Made by:
-#   Original code, updates, and onwer: Jeldo#9587
+#   Original code, updates, and owner: Jeldo#9587
 #   Proxy support, fork, better UI: ! max#7948
 
 try:
@@ -26,8 +26,8 @@ except ModuleNotFoundError:
     print("Successfully installed required modules.")
     os.system("pause")
     exit(1)
-os.system("cls" if os.name == "nt" else "clear")
-if os.name == "nt": ctypes.windll.kernel32.SetConsoleTitleW("J3ldo Sniper")
+os.system("cls")
+ctypes.windll.kernel32.SetConsoleTitleW("J3ldo Sniper")
 
 with open('config.json', "r") as f:
     conf = json.load(f)
@@ -88,7 +88,7 @@ if themeConfig["version"] != themeVersion:
     if input(f"[COLOR_RED]  [>>] [COLOR_WHITE]").lower() == "n":
         exit(1)
 
-if os.name == "nt": ctypes.windll.kernel32.SetConsoleTitleW(themeConfig["title"])
+ctypes.windll.kernel32.SetConsoleTitleW(themeConfig["title"])
 
 with open(f"{themeLocation}/{themeConfig['logo']}", "r", encoding="unicode_escape") as f: logo = textToColour(f.read())
 with open(f"{themeLocation}/{themeConfig['printText']}", "r", encoding="unicode_escape") as f: printText = textToColour(
@@ -241,7 +241,6 @@ def textToVar(text: str):
 
         "[x-csrf]": x_token,
         "[cooldown]": cooldown,
-
     }
 
     for key in custom_vars:
@@ -259,7 +258,7 @@ def printall():
             iteration = 0
             recent_logs = []
 
-        os.system("cls" if os.name == "nt" else "clear")
+        os.system("cls")
         if conf.get("logo dupe", True): print(logo)
         print(textToVar(printText) + "\n\nLogs:\n" + "\n".join(i for i in recent_logs))
 
@@ -274,13 +273,13 @@ def getStock():
                       headers={"x-csrf-token": x_token}, cookies={".ROBLOSECURITY": cookies[0][0]},
                       proxies={'http': "http://" + proxy} if proxiesOn else {})
     except:
-        betterPrint('[COLOR_RED]ERROR CAUGHT WHILST TRYING TO GET THE STOCK', True)
+        betterPrint('[COLOR_RED]ERROR CAUGHT WHILST TRYING TO GET THE STOCK')
         return 1
 
     try:
         left = info.json()["data"][0]["unitsAvailableForConsumption"]
     except:
-        betterPrint(f"[COLOR_RED]Failed getting stock. Full log: {info.text} - {info.reason}", True)
+        betterPrint(f"[COLOR_RED]Failed getting stock. Full log: {info.text} - {info.reason}")
         left = 1
 
     return left
@@ -294,7 +293,7 @@ def rawbuy(data, other, cookie):
                          json=data, headers={"x-csrf-token": cookie[1]}, cookies={".ROBLOSECURITY": cookie[0]},
                          proxies={'http': "http://" + proxy} if proxiesOn and conf["purchase proxy"] else {})
     except:
-        betterPrint('[COLOR_RED]ERROR CAUGHT WHILST TRYING TO PURHCASE ITEM', True)
+        betterPrint('[COLOR_RED]ERROR CAUGHT WHILST TRYING TO PURHCASE ITEM')
         return
 
     if _bought.reason == "Too Many Requests":
@@ -303,7 +302,7 @@ def rawbuy(data, other, cookie):
             proxy_changed += 1
             return
 
-        betterPrint(f"[COLOR_RED]Ratelimit for buying limited. Waiting one second until continuing", True)
+        betterPrint(f"[COLOR_RED]Ratelimit for buying limited.")
         time.sleep(1)
         return
 
@@ -311,22 +310,22 @@ def rawbuy(data, other, cookie):
         _bought = _bought.json()
     except:
         betterPrint(
-            f"[COLOR_YELLOW]Json decoder error whilst trying to buy item. - Reason {_bought.status_code}-{_bought.reason}", True)
+            f"[COLOR_YELLOW]Json decoder error whilst trying to buy item. - Reason {_bought.status_code}-{_bought.reason}")
         return
 
     if _bought['purchaseResult'] == 'Flooded':
-        betterPrint(f"[COLOR_GREEN]Bought maximum amount of items on account. Switching cookies", True)
+        betterPrint(f"[COLOR_GREEN]Bought maximum amount of items on account. Switching cookies")
         switchcookie = True
 
     if _bought['errorMessage'] == 'QuantityExhausted':
-        betterPrint(f"[COLOR_RED]All items sold out.", True)
+        betterPrint(f"[COLOR_RED]All items sold out.")
         soldout = True
 
     if not _bought["purchased"]:
-        betterPrint(f"[COLOR_RED]Failed buying limited, trying again.. Info: {_bought} - {data}", True)
+        betterPrint(f"[COLOR_RED]Failed buying limited, trying again.. Info: {_bought} - {data}")
 
     if _bought["purchased"]:
-        betterPrint(f"[COLOR_AQUAMARINE_1A]Successfully bought limited! Info: {_bought} - {data}", True)
+        betterPrint(f"[COLOR_AQUAMARINE_1A]Successfully bought limited! Info: {_bought} - {data}")
         bought += 1
         boughtsession += 1
 
@@ -423,8 +422,10 @@ while 1:
                           headers={"x-csrf-token": x_token},
                           cookies={".ROBLOSECURITY": cookies[0][0]},
                           proxies={'http': "http://" + proxy} if proxiesOn else {}).json()["data"][0]
-
-            price = info["price"]
+            try:
+                price = info["price"]
+            except:
+                price = 0
         except:
             if proxiesOn:
                 proxy = next(proxy_pool)  # switch proxy
@@ -474,3 +475,4 @@ while 1:
 
     checks_made += len(limiteds)
     speed = round(time.perf_counter() - start, 2)
+    
