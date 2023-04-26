@@ -23,6 +23,7 @@ Search items based on RAP, Projection detection, alt account support, buying eve
 * Highly customizable
 * Make your own themes
 * Free, and safe to use
+* Windows, Mobile, Unix, Linux support
 
 ## How to use
 
