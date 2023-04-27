@@ -455,13 +455,16 @@ while 1:
                     f"[COLOR_RED]Something went wrong whilst getting the product id Logs - {productid.text} - {productid.reason}")
                 continue
 
+            if price != 0 and conf.get("purchase paid ugcs", False) is False:
+                limiteds.remove(limited)
+                continue
             if conf["purchase paid ugcs"] is True and bought >= conf["purchase paid ugcs amount"]:
+                limiteds.remove(limited)
                 betterPrint(f"[COLOR_RED]You have bought the maximum amount of paid ugcs from your config.")
                 continue
-            if price != 0 and conf.get("purchase paid ugcs", False) is False:
-                continue
-            if price > conf.get("purchase paid ugcs price under", 0):
-                print(f"[COLOR_RED]Price of item is higher than configured max price. Price: {info['price']}")
+            if price > conf.get("paid ugcs max price", 0):
+                limiteds.remove(limited)
+                betterPrint(f"[COLOR_RED]Price of item is higher than configured max price. Price: {info['price']}")
                 limiteds.remove(limited)
                 continue
 
