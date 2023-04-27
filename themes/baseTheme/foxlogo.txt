@@ -1,0 +1,35 @@
+[COLOR_WHITE]         .
+[COLOR_WHITE]      !7 ~7!.                          [COLOR_WHITE].~!:~:
+[COLOR_WHITE]     !5:   ~Y~                        [COLOR_WHITE]7YJ^.^P.
+[COLOR_WHITE]     G~ [COLOR_HOT_PINK_3B].:. [COLOR_WHITE].J!      .?~           .!Y?. [COLOR_HOT_PINK_3B]:. [COLOR_WHITE]?Y
+[COLOR_WHITE]    7Y [COLOR_HOT_PINK_3B].!7~   [COLOR_WHITE]?7 ..:::G?J!.       !Y7[COLOR_HOT_PINK_3B]..!!7^ [COLOR_WHITE]:5
+[COLOR_WHITE]   .B~ [COLOR_HOT_PINK_3B]~77!.  [COLOR_WHITE].JJ?!7!!55.!J7.   :Y?. [COLOR_HOT_PINK_3B]:!777.  [COLOR_WHITE]P:
+[COLOR_WHITE]   !Y [COLOR_HOT_PINK_3B].777JJ!!7~:     [COLOR_WHITE]:B^  ~J! !5^  [COLOR_HOT_PINK_3B]^7777!   [COLOR_WHITE]P:
+[COLOR_WHITE]   5! [COLOR_HOT_PINK_3B]^777YJ!??.       [COLOR_WHITE]..    !!?.  [COLOR_HOT_PINK_3B].77777:   [COLOR_WHITE]?7
+[COLOR_WHITE]  .P. [COLOR_HOT_PINK_3B]^777!~  [COLOR_WHITE]..                   [COLOR_HOT_PINK_3B].!777^    [COLOR_WHITE]J?
+[COLOR_WHITE]  .P  [COLOR_HOT_PINK_3B]~!!!!:[COLOR_WHITE]                         [COLOR_HOT_PINK_3B].:^.    [COLOR_WHITE]P:
+[COLOR_WHITE]  .P.  [COLOR_HOT_PINK_3B]...[COLOR_WHITE]  ~~: ^!.        ^????!:          [COLOR_WHITE]^P.
+[COLOR_WHITE]   5~     ^PJ^. .7J.     .YJ?!~!5&5.       .P!              
+[COLOR_WHITE]   !J    ^&Y   .GGG:      .    :P@&P       7Y               
+[COLOR_WHITE].7~~GJ^!.G#.   5@@G            B@&@&:     :J^:.             
+[COLOR_WHITE].?J!:~~^^BG    G@@! ..        ~@@@##~      :~!!YP:          
+[COLOR_WHITE]  :77~:::[COLOR_WHITE]5P!:  .!7:JP5^       ^GBGJJJ~7.[COLOR_WHITE]  .?7777~
+[COLOR_WHITE]    .^GP[COLOR_HOT_PINK_3B]JJYJ7^                  [COLOR_HOT_PINK_3B].!7???:[COLOR_WHITE]    5~           ~^  
+[COLOR_WHITE]     Y? [COLOR_HOT_PINK_3B]~77!7!     [COLOR_WHITE]  7   7       [COLOR_HOT_PINK_3B]^?YY?!~[COLOR_WHITE]^^^~P           JGJ:
+[COLOR_WHITE]    .P77!!5J~:.    [COLOR_WHITE]:? ^~7~  .:^~7?Y?^.::^~~!?           ?57Y^
+[COLOR_WHITE]     .:.. .^!77JY7!^        ^7?~7~                      YY![COLOR_HOT_PINK_3B]7[COLOR_WHITE]G^
+[COLOR_WHITE]              ?J^..:            :7J:                   :B[COLOR_HOT_PINK_3B]777[COLOR_WHITE]?GJ~
+[COLOR_WHITE]            ~P~                   ^5~                  7P![COLOR_HOT_PINK_3B]77![COLOR_WHITE]P&[COLOR_HOT_PINK_3B]5[COLOR_WHITE]7
+[COLOR_WHITE]           ^G!.            ..      7#.                ^G[COLOR_HOT_PINK_3B]7777[COLOR_WHITE]?&[COLOR_HOT_PINK_3B]J[COLOR_WHITE]57
+[COLOR_WHITE]           ?J        .     P!      ^G.               7PJ[COLOR_HOT_PINK_3B]!77777[COLOR_WHITE]&Y[COLOR_HOT_PINK_3B]![COLOR_WHITE]J?
+[COLOR_WHITE]           !Y        ~P.  7Y       ^5              .JP[COLOR_HOT_PINK_3B]77777777[COLOR_WHITE]&P[COLOR_HOT_PINK_3B]!![COLOR_WHITE]YY.
+[COLOR_WHITE]           :P         ?J :G:       7Y            ^?[COLOR_HOT_PINK_3B]5J777777777[COLOR_WHITE]&G[COLOR_HOT_PINK_3B]777[COLOR_WHITE]J5
+[COLOR_WHITE]           ^B:         5^P!        Y!         .!J[COLOR_HOT_PINK_3B]5J7!777777777[COLOR_WHITE]YY[COLOR_HOT_PINK_3B]?777[COLOR_WHITE]G^
+[COLOR_WHITE]           ~@~         !#Y        :B^      :~??[COLOR_HOT_PINK_3B]7!!777777777777[COLOR_WHITE]!![COLOR_HOT_PINK_3B]777[COLOR_WHITE]!J?
+[COLOR_WHITE]           YG?         ^&^        7@7   .~?J~.:[COLOR_HOT_PINK_3B]!!!!77!!777777777777[COLOR_WHITE]!?J
+[COLOR_WHITE]          ^P^5.        ~?         7GG..?J!:[COLOR_HOT_PINK_3B]   ....::::^777!!7777777[COLOR_WHITE]!Y?
+[COLOR_WHITE]         .G! J7       .Y.         5~~BY~   [COLOR_HOT_PINK_3B]           ~77!!!!!77777[COLOR_WHITE]?B.
+[COLOR_WHITE]        ~G7  !Y       !!         :P .&Y   [COLOR_HOT_PINK_3B]           .!77~:.!777777[COLOR_WHITE]P7
+[COLOR_WHITE]       JP:   !P       !.        .JP .!P? [COLOR_HOT_PINK_3B]            .!~^.  .!7!!7[COLOR_WHITE]5?
+[COLOR_WHITE]       GY    :P.      .          YJ   ^P.[COLOR_HOT_PINK_3B]             .       ^?J[COLOR_WHITE]?:
+[COLOR_WHITE]       ^^     77                .7:    7:[COLOR_HOT_PINK_3B]                     ^[COLOR_WHITE]!:
