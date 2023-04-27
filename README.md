@@ -1,9 +1,10 @@
 
 # [UGC Sniper]((https://discord.gg/3Uvcf8d9aY))
-The first and best sniper again
+The first and best sniper, **again.**
 
-A free UGC sniper bot for roblox that sniper free limiteds.  
-Unofficial tutorial: https://youtu.be/tLiNCI8bzSo
+A free UGC sniper bot for roblox that snipes limiteds.  
+
+Unofficial tutorial: [Youtube Link](<https://youtu.be/tLiNCI8bzSo>)
 
 ## Table of contents
 1. [Table of contents](https://github.com/J3ldo/UGC-Sniper#Table-of-contents)
@@ -12,15 +13,23 @@ Unofficial tutorial: https://youtu.be/tLiNCI8bzSo
 4. [How to use](https://github.com/J3ldo/UGC-Sniper#how-to-use)
 
 ## [Premium](https://discord.gg/3Uvcf8d9aY)
-If you aren't happy with the preformance of this UGC Sniper or want a limited sniper. You can buy the premium limited sniper. This sniper has way more functionality because for just €10,- you can get the following features.
+If you aren't happy with the performance of this UGC Sniper or want a better sniper, you can buy the premium limited sniper. 
+For €10, the premium limited sniper sniper has way more functionality & features, including:
   
-Check prices way faster, and faster proxies.
-Search items based on RAP, Projection detection, alt account support, buying every limited with a price under 50 robux, blacklisted keywords, checking 119 limiteds in 0,75 seconds (no proxies), dynamic pricing of limited, and way more. 
+- Check prices way faster, and faster proxies
+- Search items based on RAP, projection detection
+- alt account support
+- blacklisted keywords
+- fast price checking (119 limiteds in 0.75 seconds)
+- dynamic pricing of limiteds
+  ..and way more. 
 
 ## Features
 * Different sniping modes afk, regular, time
 * Multicookie support
 * Incredible speed
+* Proxy support
+* Buy free and paid ugcs
 * Highly customizable
 * Make your own themes
 * Free, and safe to use
@@ -30,18 +39,17 @@ Search items based on RAP, Projection detection, alt account support, buying eve
 ### [Click me to watch the unofficial installation guide](https://youtu.be/tLiNCI8bzSo)
 
 ### Step 1
-Install python. You first need to install python you can do this [here](https://www.python.org/download). After downloading python you need to install the requests library. You can do this by typing "pip install requests" and "pip install discord-webhook" in the command prompt or if that doesnt work "python -m pip install requests" and "python -m pip install discord-webhook". 
+Install python. You first need to install python you can do this [here](https://www.python.org/download). After downloading python, you need to install the requests library. You can do this by typing "pip install requests" and "pip install discord-webhook" in the command prompt. If that doesnt work: "python -m pip install requests" and "python -m pip install discord-webhook". 
 
 ### Step 2
-Click on code > download zip. This will download the program as a .zip file after that unpack the installed limited sniper into a directory of choice.
+Click on code > download zip. This will download the program as a .zip file and after that unpack the installed limited sniper into a directory of choice.
  
 ### Step 3
 You need to put in your roblox cookie into the cookie.txt file.
 
-First install this repository: https://github.com/J3ldo/Roblox-Token-Fetcher  
+First install this repository: [Token Fetcher Link](<https://github.com/J3ldo/Roblox-Token-Fetcher>)
 Then open google chrome and click on the extensions button > manage extensions > load unpacked  
-Select the repository directory and click on the extension icon now just copy the .ROBLOSECURITY this is the 1st one!  
-And your done!
+Select the repository directory and click on the extension icon. Now just copy the .ROBLOSECURITY!
 
 ### Step 4
 Put in the desired limiteds in limiteds.txt and seperate them with a comma.
@@ -56,5 +64,5 @@ That's all, hope you get some good deals and some good robux, if you do make sur
 ## How to create a theme
 * Copy paste and rename baseTheme
 * Put your path to the theme into current theme in the config
-* Edit logo.txt for the logo and printText.txt for the printed text  
+* Edit mainlogo.txt for the logo and printText.txt for the printed text  
 **TIP - For all variabled and colours see themes/required.json**
