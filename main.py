@@ -197,7 +197,7 @@ if mode == "regular":
         os.system("pause")
         exit(1)
 
-    cooldown = conf["custom afk cooldown"] if conf["custom regular cooldown"] >= 0 else cooldown
+    cooldown = conf["custom regular cooldown"] if conf["custom regular cooldown"] >= 0 else cooldown
 
 elif mode == "afk":
     try:
