@@ -13,7 +13,7 @@
     "custom afk cooldown": -1,
     "custom time cooldown": -1,
 
-    "time wait minutes": 5,
+    "time wait minutes": -1,
     "print update cooldown": 1.0,
 
     "proxy ratelimit cooldown": 0,
