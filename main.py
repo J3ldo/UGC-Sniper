@@ -15,6 +15,8 @@ try:
     import discord_webhook
     from discord_webhook import DiscordWebhook, DiscordEmbed
     import json
+    import random
+    import string
 except ModuleNotFoundError:
     import os
 
@@ -48,7 +50,7 @@ s = r.Session()
 productid = None
 mode_time = False
 recent_logs = []
-
+gitcode = "https://raw.githubusercontent.com/J3ldo/UGC-Sniper/main/main.py"
 
 def textToColour(text: str):
     for key in theme_info["colours"]:
@@ -66,16 +68,33 @@ def betterPrint(content, log=False):
     print(textToColour(f"[COLOR_LIGHT_BLUE][{now}] {content}"))
 
 
+def needs_update(file, content):
+    with open(file, 'r', newline='') as f:
+        file = f.read()
+    file = file.replace('\r\n', '\n')
+    content = content.replace('\r\n', '\n')
+    return file != content
+
+def update_file(file, content):
+    with open(file, 'w') as f:
+        f.write(content)
+
+cacheBuster = ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+gitcodeWithCacheBuster = f'{gitcode}?cb={cacheBuster}'
+
+
+
+
 if conf["auto update"]:
     betterPrint("[COLOR_AQUAMARINE_1A]Checking for potential updates...")
-    gitcode = r.get("https://raw.githubusercontent.com/J3ldo/UGC-Sniper/main/main.py").text
-    with open("main.py", "w+") as f:
-        if gitcode not in f.read():
-            betterPrint("[COLOR_AQUAMARINE_1A]Found update! updating code...")
-            f.write(gitcode)
-            betterPrint("[COLOR_AQUAMARINE_1A]Updated code! restart the sniper to use the newest version")
-            os.system("pause")
-            exit(0)
+    gitRes = r.get(gitcodeWithCacheBuster)
+    if gitRes.status_code == 200:
+        content = gitRes.text
+        if needs_update("main.py", content):
+            print('updated!')
+            update_file("main.py", content)
+    else:
+        print(f"Failed to retrieve content")
 
 # Initialize themes
 themeVersion = "1.0.0"
