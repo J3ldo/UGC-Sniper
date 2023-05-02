@@ -5,6 +5,7 @@
 
     "auto update": false,
     "purchase proxy": false,
+    "proxies enabled": true,
     "better print": true,
     "logo dupe": true,
     "logs reset iteration": 3,
@@ -21,7 +22,6 @@
     "print update cooldown": 1.0,
 
     "purchase paid ugcs": false,
-    "proxies enabled": false,
     "timeout": 3,
     "paid ugcs max price": 0,
     "purchase paid ugcs amount": 0,
