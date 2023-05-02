@@ -1,2 +1,4 @@
 requests
 discord-webhook
+pick
+rgbprint

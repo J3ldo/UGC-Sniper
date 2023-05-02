@@ -1,7 +1,13 @@
 {
-    "version": "1.0.0",
-    "title": "J3ldo Sniper",
+    "version": "1.1.0",
+    "type": "txt",
 
-    "logo": "mainlogo.txt",
+    "title": "J3ldo Sniper",
+    "resize": {"width": -1, "height": -1},
+    "indicator": ">>",
+    "log seperator": "\t[LOG]\n",
+
+    "script": "theme.py",
+    "logo": "logo.txt",
     "printText": "printText.txt"
 }

@@ -1,6 +1,11 @@
 {
     "READ": "THIS IS REQUIRED FOR THE PROGRAM TO WORK, DO NOT DELETE THIS FILE!",
 
+    "types": [
+        "txt",
+        "py"
+    ],
+
     "variables": [
         "[username]",
         "[displayName]",
@@ -19,9 +24,20 @@
         "[status]",
         "[priceChecks]",
         "[bought]",
+        "[boughtpaid]",
 
         "[x-csrf]",
-        "[cooldown]"
+        "[cooldown]",
+        "[errors]",
+        "[version]",
+        "[mode]",
+        "[logs]",
+        "[ip]"
+    ],
+
+    "custom colours": [
+        "[HEX_#fffff]",
+        "[GRADIENT_start_end]Text here[END]"
     ],
 
     "colours": {

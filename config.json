@@ -7,25 +7,34 @@
     "purchase proxy": false,
     "better print": true,
     "logo dupe": true,
+    "logs reset iteration": 3,
+    "debug": true,
 
     "mode": "",
     "custom regular cooldown": -1,
     "custom afk cooldown": -1,
-    "custom time cooldown": -1,
+    "custom time cooldown": 1,
+    "custom unix cooldown": -1,
 
     "time wait minutes": -1,
+    "time wait unix": -1,
     "print update cooldown": 1.0,
 
-    "proxy ratelimit cooldown": 0,
-    "ratelimit cooldown": 5,
-    
     "purchase paid ugcs": false,
+    "proxies enabled": false,
+    "timeout": 3,
     "paid ugcs max price": 0,
     "purchase paid ugcs amount": 0,
 
-    "current theme": "./themes/baseTheme",
+    "proxy ratelimit cooldown": 0,
+    "ratelimit cooldown": 5,
+
+    "current theme": "baseTheme",
 
     "cookie": "cookies.txt",
     "limiteds": "limiteds.txt",
-    "proxies": "proxies.txt"
+    "proxies": "proxies.txt",
+
+    "updateReminder": 0,
+    "allowPyThemes": false
 }

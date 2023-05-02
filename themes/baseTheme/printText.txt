@@ -3,7 +3,13 @@
         [COLOR_WHITE]--> [Ratelimits: [COLOR_RED][ratelimits][COLOR_WHITE]]
 
     [COLOR_WHITE][Price checks made: [COLOR_GREEN][priceChecks][COLOR_WHITE]]
-    [COLOR_WHITE][Bought UGCs: [COLOR_GREEN][bought][COLOR_WHITE]]
+    [COLOR_WHITE][Limiteds added: [COLOR_GREEN][limitedsAmount][COLOR_WHITE]]
+    [COLOR_GREEN][UGC Items bought][COLOR_WHITE]
+        --> [COLOR_WHITE][Bought UGCs: [COLOR_GREEN][bought][COLOR_WHITE]]
+        --> [COLOR_WHITE][Bought paid UGCs: [COLOR_GREEN][boughtpaid][COLOR_WHITE]]
     [COLOR_WHITE][Changed Proxies: [COLOR_RED][changedProxies][COLOR_WHITE]]
         [COLOR_WHITE]--> [Current Proxy: [COLOR_YELLOW][currentProxy][COLOR_WHITE]]
     [COLOR_WHITE][Status: [COLOR_YELLOW][status][COLOR_WHITE]]
+
+    Logs:
+        [logs]
