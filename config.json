@@ -8,7 +8,7 @@
     "better print": true,
     "logo dupe": true,
     "logs reset iteration": 3,
-    "debug": true,
+    "debug": false,
 
     "mode": "",
     "custom regular cooldown": -1,
