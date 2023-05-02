@@ -251,7 +251,7 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
     def __init__(self):
         os.system("cls" if os.name == "nt" else "clear")
         if os.name == "nt": ctypes.windll.kernel32.SetConsoleTitleW("J3ldo Sniper")
-        asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+        if os.name == "nt": asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
         # Init data
         self.errors = 0
