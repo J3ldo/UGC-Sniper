@@ -29,7 +29,7 @@
     "proxy ratelimit cooldown": 0,
     "ratelimit cooldown": 5,
 
-    "current theme": "baseTheme",
+    "current theme": "./themes/baseTheme",
 
     "cookie": "cookies.txt",
     "limiteds": "limiteds.txt",
