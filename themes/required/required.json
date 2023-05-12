@@ -32,11 +32,13 @@
         "[version]",
         "[mode]",
         "[logs]",
-        "[ip]"
+        "[ip]",
+        "[runtime]"
     ],
 
     "custom colours": [
         "[HEX_#fffff]",
+        "[RGB_255,0,255]",
         "[GRADIENT_start_end]Text here[END]"
     ],
 

@@ -1,1 +1,2 @@
-
+# PLEASE SET use proxies to true IN CONFIG.JSON OR IT WONT WORK
+# FORMAT: user:pass@ip:port / user:pass:ip:port

@@ -1,11 +1,14 @@
 {
-    "version": "1.0.0",
+    "version": "1.2.0",
     "type": "txt",
 
     "title": "J3ldo Sniper",
     "resize": {"width": -1, "height": -1},
     "indicator": ">>",
     "log seperator": "\t[LOG]\n",
+
+    "status buying": "Buying Limited",
+    "status check": "Checking for onsale limiteds",
 
     "script": "theme.py",
     "logo": "logo.txt",

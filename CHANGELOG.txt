@@ -1,3 +1,14 @@
+Added discord bot support
+New mode casual
+Regular renamed to speed
+Added time indicators for the modes
+Added proxy checker
+Added base cooldowns for time and unix
+Added user:pass:ip:port proxy support
+On demand x-csrf getting
+Add extensions
+Add extensions security
+Add proxy information
 Very many bug fixes
 Faster buying
 Faster checking (with no cooldowns)
@@ -17,3 +28,6 @@ Themes script info viewer
 Fixed multicookie
 Install uninstalled modules confirmation
 Update confirmations
+Added py command to auto install
+Added RGB keyword to themes
+Added rapidjson

@@ -5,14 +5,15 @@
 
     "auto update": false,
     "purchase proxy": false,
-    "proxies enabled": true,
+    "proxies enabled": false,
     "better print": true,
     "logo dupe": true,
     "logs reset iteration": 3,
-    "debug": false,
+    "debug": true,
 
     "mode": "",
-    "custom regular cooldown": -1,
+    "custom speed cooldown": -1,
+    "custom casual cooldown": -1,
     "custom afk cooldown": -1,
     "custom time cooldown": 1,
     "custom unix cooldown": -1,
@@ -27,14 +28,16 @@
     "purchase paid ugcs amount": 0,
 
     "proxy ratelimit cooldown": 0,
-    "ratelimit cooldown": 5,
+    "ratelimit cooldown": 1,
 
-    "current theme": "./themes/baseTheme",
+    "current theme": "baseTheme",
 
     "cookie": "cookies.txt",
     "limiteds": "limiteds.txt",
     "proxies": "proxies.txt",
 
     "updateReminder": 0,
-    "allowPyThemes": false
+    "allowPyThemes": false,
+    "trustExtensions": false,
+    "checkProxies": true
 }

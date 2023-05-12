@@ -1,6 +1,6 @@
 # Imports here
 from themes.required.visual import Visual
-from themes.required.sniper import Sniper
+from themes.required.sniper import UGCSniper
 
 # Print class definition
 def printLogo():
@@ -25,7 +25,7 @@ $$ |  $$ |$$\   $$ |$$ |$$ |  $$ |$$ |  $$ |      $$\   $$ |$$ |  $$ |$$ |$$ |  
     )
     return 1
 
-def printText(sniper: Sniper, logs):
+def printText(sniper: UGCSniper, logs):
     '''
     :param: sniper: the sniper with all variables
     :param: logs: The logs made by the sniper will automatically reset after 3 iterations
