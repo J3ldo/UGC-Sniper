@@ -3,13 +3,13 @@
     "webhook": "",
     "ping everyone": true,
 
-    "auto update": false,
+    "auto update": true,
     "purchase proxy": false,
     "proxies enabled": false,
     "better print": true,
     "logo dupe": true,
     "logs reset iteration": 3,
-    "debug": true,
+    "debug": false,
 
     "mode": "",
     "custom speed cooldown": -1,
