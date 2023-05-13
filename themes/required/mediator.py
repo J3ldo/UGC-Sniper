@@ -1,0 +1,2 @@
+class VisualMediator:
+    Visual = None
