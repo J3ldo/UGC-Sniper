@@ -2,6 +2,8 @@
 #   Original code, updates, and owner: Jeldo#9587
 #   Proxy support, fork, better UI, and developer: ! max#7948
 
+from extensions.base.bot import Bot
+from themes.required.mediator import VisualMediator
 
 VERSION = "2.5.0"
 
@@ -209,7 +211,8 @@ class Visual:
             text = text.replace(key, str(custom_vars[key]))
 
         return text
-
+    
+VisualMediator.Visual = Visual()
 
 class Other:
     @staticmethod
