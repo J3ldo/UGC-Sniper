@@ -927,10 +927,6 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
                     for limited in data[1]:
                         Visual.betterPrint(f"[COLOR_CYAN]Buying the {limited['name']} ({limited['id']})[COLOR_WHITE]")
                         self.stats = themeConfig.get("status buying", "Buying Limited")
-                        if _version == "v0":
-                            raise UnicodeWarning(
-                                "Critical: Could not decode output request information whilst buying limited.\n"
-                                "Output at <50697261746564> could not be decoded.")
 
                         await self.buy(s, limited)  # Start met het kopen zonder enige zorg in de wereld
 
