@@ -2,7 +2,6 @@
 #   Original code, updates, and owner: Jeldo#9587
 #   Proxy support, fork, better UI, and developer: ! max#7948
 
-from extensions.base.bot import Bot
 
 VERSION = "2.5.0"
 
@@ -895,10 +894,6 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
 
 
     async def main(self):
-        
-        if conf.get("bot enabled", False) is True and conf.get("bot token", "") != "":
-            bot = Bot(self)
-            asyncio.create_task(bot.start_bot())
             
         asyncio.create_task(self.get_token())
 
