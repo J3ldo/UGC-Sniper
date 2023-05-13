@@ -21,6 +21,10 @@
     "time wait minutes": -1,
     "time wait unix": -1,
     "print update cooldown": 1.0,
+    
+    "bot token": "",
+    "prefix": ">",
+    "bot enabled": false,
 
     "purchase paid ugcs": false,
     "timeout": 3,
