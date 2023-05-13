@@ -5,4 +5,5 @@ import rgbprint
 import logging
 import datetime
 
-from __main__ import Visual
+from .mediator import VisualMediator
+Visual = VisualMediator.Visual
