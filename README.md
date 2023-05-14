@@ -41,13 +41,12 @@ For €10, the premium limited sniper sniper has way more functionality & featur
 ### [Click me to watch the unofficial installation guide](https://youtu.be/tLiNCI8bzSo)
 
 ### Step 1
-Install python. You first need to install python you can do this [here](https://www.python.org/download). After downloading python, you need to install the requests library. You can do this by typing "pip install requests" and "pip install discord-webhook" in the command prompt. If that doesnt work: "python -m pip install requests" and "python -m pip install discord-webhook". 
-
+Install python. You first need to install python you can do this [here](https://www.python.org/download)
 ### Step 2
 Click on code > download zip. This will download the program as a .zip file and after that unpack the installed limited sniper into a directory of choice.
  
 ### Step 3
-You need to put in your roblox cookie into the cookie.txt file.
+You need to put in your roblox cookie into the cookies.txt file.
 
 First install this repository: [Token Fetcher Link](<https://github.com/J3ldo/Roblox-Token-Fetcher>)
 Then open google chrome and click on the extensions button > manage extensions > load unpacked  
