@@ -1,10 +1,6 @@
 # Made by:
 #   Original code, updates, and owner: Jeldo#9587
 #   Proxy support, fork, better UI, and developer: ! max#7948
-
-from extensions.base.bot import Bot
-from themes.required.mediator import VisualMediator
-
 VERSION = "2.5.0"
 
 try:
@@ -211,8 +207,6 @@ class Visual:
             text = text.replace(key, str(custom_vars[key]))
 
         return text
-    
-VisualMediator.Visual = Visual()
 
 class Other:
     @staticmethod
@@ -742,7 +736,7 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
             Visual.betterPrint(f"[COLOR_AQUAMARINE_1A]Successfully bought limited! Info: {data} - {buydata}", True)
             if conf["webhook enabled"]:
                 embed = discord.Embed(title='Purchased Limited', description='You successfully sniped a limited!',
-                                     color='03b2f8')
+                                      color=discord.Colour().blue())
                 embed.add_field(name=f'Item',
                                       value=f'[{liminfo["name"]}](https://www.roblox.com/catalog/{liminfo["id"]})')
                 embed.add_field(name=f'Stock', value=f'{liminfo["unitsAvailableForConsumption"]}')

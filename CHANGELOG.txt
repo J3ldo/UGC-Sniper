@@ -1,33 +1,6 @@
-Added discord bot support
-New mode casual
-Regular renamed to speed
-Added time indicators for the modes
-Added proxy checker
-Added base cooldowns for time and unix
-Added user:pass:ip:port proxy support
-On demand x-csrf getting
-Add extensions
-Add extensions security
-Add proxy information
-Very many bug fixes
-Faster buying
-Faster checking (with no cooldowns)
-Gradient option for themes
-More variables for themes
-Async rework
-Python mode for themes
-Hex colours for themes
-Resize console for themes
-Update reminder for the update feature
-Printing optimizations
-Logging
-Add ip variable for themers
-Whitelisted themes
-Pick for many actions
-Themes script info viewer
-Fixed multicookie
-Install uninstalled modules confirmation
-Update confirmations
-Added py command to auto install
-Added RGB keyword to themes
-Added rapidjson
+Fixed webhook
+Fixed ratelimit issue
+Fixed bot
+Didnt fix you not getting any bitches
+Fixed random discord_webhook import??
+Fixed visual

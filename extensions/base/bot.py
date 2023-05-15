@@ -1,12 +1,12 @@
 import discord
 from discord.ext import commands
-import discord_webhook
 import logging
 import os
 import time
 import json
 import aiohttp
 import sys
+
 extensions_path = os.path.dirname(os.path.abspath(__file__))
 themes_path = os.path.join(extensions_path, '..', 'themes')
 sys.path.insert(0, themes_path)
