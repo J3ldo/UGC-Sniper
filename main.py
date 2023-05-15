@@ -880,10 +880,12 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
                 aiohttp.client_exceptions.ClientOSError):
             return await Other.handle_ratelimit(sniper, [], 0 if not self.proxiesOn else -1, "[COLOR_RED]Network error, continuing. Severity: Very low")
 
-        try: all_data = json.loads(await resp.text())["data"]
+        dat = {}
+        try:
+            dat = json.loads(await resp.text())
+            all_data = dat["data"]
         except (json.JSONDecodeError, KeyError):
-            dat = json.loads(await resp.text()).get("message", "")
-            if dat == "Token Validation Failed": self.update_token = True
+            if dat.get("message", "") == "Token Validation Failed": self.update_token = True
             return await Other.handle_ratelimit(sniper, await resp.text())
 
         for limited in all_data:
