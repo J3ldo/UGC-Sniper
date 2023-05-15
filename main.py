@@ -897,6 +897,9 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
 
 
     async def main(self):
+        if conf.get("bot enabled", False) is True and conf.get("bot token", "") != "":
+            bot = Bot(self)
+            asyncio.create_task(bot.start_bot())
             
         asyncio.create_task(self.get_token())
 
