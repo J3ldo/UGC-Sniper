@@ -1,6 +1,7 @@
 # Made by:
 #   Original code, updates, and owner: Jeldo#9587
 #   Proxy support, fork, better UI, and developer: ! max#7948
+
 VERSION = "2.5.0"
 
 try:
@@ -27,8 +28,6 @@ try:
     import rapidjson as json
     import quart
 
-    # Import the base extension
-    #from extensions.base import *
 except ModuleNotFoundError:
     import os
     try:
@@ -56,15 +55,12 @@ except ModuleNotFoundError:
 
 os.system("cls")
 if not os.path.exists("./logs"): os.mkdir("./logs")
-#logging.config.dictConfig({'version': 1,'disable_existing_loggers': True})
 logging.basicConfig(filename=f"./logs/logs {str(datetime.datetime.now())[:-10].replace(':', '')}.txt",level=logging.INFO, format="%(asctime)s:%(levelname)s-%(module)s  %(message)s")
 logging.debug("Started")
 
-# Load the config
 with open('config.json', "r") as f:
     conf = json.load(f)
 
-# Global variables
 recent_logs = []
 all_logs = []
 
@@ -115,7 +111,7 @@ class Visual:
         return text
 
     @staticmethod
-    def __parsegradient(text):  # Meest leesbaar stukje programma in de wereld
+    def __parsegradient(text):  
         if "[GRADIENT" not in text:
             return 0
         try:
@@ -282,10 +278,6 @@ if themeConfig["type"] == "py":
         if idx == 4:
             with open(themeLocation[2:] + "/" + themeConfig["script"], "r") as f:
                 file_content = f.read()
-            # TO-DO
-            # Get imports
-            # Get lines of code
-            # Get other functions
 
             imports = ""
             for i in file_content.split("import "):
@@ -304,14 +296,10 @@ if os.name == "nt": ctypes.windll.kernel32.SetConsoleTitleW(themeConfig["title"]
 if os.name == "nt" and themeConfig.get("resize", {"width": -1, "height": -1}) != {"width": -1, "height": -1}:
     os.system(f"mode con: cols={themeConfig['resize']['width']} lines={themeConfig['resize']['height']}")
 
-# Load themes info
 with open(f"{themeLocation}/{themeConfig['logo']}", "r", encoding="unicode_escape") as f: logo = Visual.textToColour(f.read())
 with open(f"{themeLocation}/{themeConfig['printText']}", "r", encoding="unicode_escape") as f: printText = Visual.textToColour(
     f.read())
 
-# Load extensions
-
-# Initialize the start, iteration, and end tasks. These dont want to be overwritten
 start_tasks = []
 iteration_tasks = []
 end_tasks = []
@@ -348,7 +336,6 @@ for module in os.listdir("./extensions"):
     else:
         all_names = [name for name in dir(module) if not name.startswith('_')]
 
-    # Get the start, iteration, and end functions. These dont need to be overwritten for multiple extensions
     if "start" in dir(module): start_tasks.append(module.start)
     if "iteration" in dir(module): iteration_tasks.append(module.iteration)
     if "end" in dir(module): end_tasks.append(module.end)
@@ -533,8 +520,8 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
             Visual.betterPrint("[COLOR_AQUAMARINE_1A]No updates found.")
 
     def get_type(self):
-        modes = ["Speed 1-10 minutes before", "Casual 10-60 minutes before", "Afk 1-12 hours before", "Time 1-∞ minutes before", "Specific time 1-∞ minutes before"]
-        modeNames = ["Speed", "Casual", "Afk", "Time", "Specific time"]
+        modes = ["Speed 1-10 minutes before", "Casual 10-60 minutes before", "Afk 1-12 hours before", "Time 1-∞ minutes before", "Specific time 1-∞ minutes before", "Check resellable ugc limiteds"]
+        modeNames = ["Speed", "Casual", "Afk", "Time", "Specific time", "Resellable Check"]
 
         self.mode = conf.get("mode", "").title()
         if self.mode not in modeNames:
@@ -562,6 +549,69 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
                 Visual.betterPrint("[COLOR_RED]No limiteds added, please add a limited for the sniper to work.")
                 os.system("pause")
                 exit(1)
+        elif self.mode == "Resellable Check":
+
+            async def main(id, xcsrf):
+                async with aiohttp.ClientSession() as session:
+                    async with session.get(f"https://inventory.roblox.com/v1/users/{id}/can-view-inventory") as response:
+                        
+                        data = await response.json()
+                        if data["canView"] == False:
+                            print("User inventory is private - stopping")
+                            return
+                        else:
+                         async with session.get(f"https://inventory.roblox.com/v2/users/{id}/inventory/8?limit=100&sortOrder=Desc", cookies={".ROBLOSECURITY": self.cookies[-1][0]}) as response:            
+                            data = await response.json()
+                            for item in data["data"]:
+                                if item["collectibleItemId"] != None:
+                                    print(f"Found {item['assetName']} - ({item['assetId']}) --- Checking if asset is resellable")
+                                    async with session.post(f"https://catalog.roblox.com/v1/catalog/items/details", headers={"X-CSRF-TOKEN": xcsrf}, cookies={".ROBLOSECURITY": self.cookies[-1][0]}, json={"items": [{"itemType": "Asset", "id": int(item['assetId'])}]}) as response:
+                                        data = await response.json()
+                                        if data["data"][0]["hasResellers"] == True:
+                                            print(f"Resellable asset: {item['assetName']} - ({item['assetId']})")
+                                
+                                        else:
+                                            continue
+
+            async def get_token(self):
+                async with aiohttp.ClientSession(json_serialize=json.dumps) as s:
+                    self.userinfo = await (await s.get("https://users.roblox.com/v1/users/authenticated", cookies={".ROBLOSECURITY": self.cookies[-1][0]})).json()
+                    try: self.cookies[-1][2] = self.userinfo["id"]
+                    except KeyError:
+                        Visual.betterPrint("[COLOR_RED]Invalid cookie parsed.")
+                        os.system("pause")
+                        exit(1)
+
+                    for idx, cookie in enumerate(self.cookies[1:]):
+                        self.cookies[idx][2] = (await (await s.get("https://users.roblox.com/v1/users/authenticated",
+                             cookies={".ROBLOSECURITY": cookie[0]}, ssl=False)).json())['id']
+
+                    while 1:
+                        for idx, cookie in enumerate(self.cookies):
+                            if idx == 0 and self.update_token: self.update_token = False
+                            resp = await s.post("https://auth.roblox.com/v2/logout",
+                                        cookies={".ROBLOSECURITY": cookie[0]}, ssl=False)
+                            self.cookies[idx][1] = resp.headers['x-csrf-token']
+
+                            return self.cookies[idx][1]
+
+            async def get_userId():
+                async with aiohttp.ClientSession(json_serialize=json.dumps) as s:
+                    for idx, cookie in enumerate(self.cookies):
+                        self.cookies[idx][2] = (await (await s.get("https://users.roblox.com/v1/users/authenticated",
+                             cookies={".ROBLOSECURITY": cookie[0]}, ssl=False)).json())['id']
+                    return self.cookies[idx][2]
+                    
+
+            async def combine(self):
+                print("Starting resellable check")
+                userid = await get_userId()
+                xtoken = await get_token(self)
+                
+                await main(userid, xtoken)
+                exit(0)
+
+            asyncio.run(combine(self))
         else:
             while 1:
                 if self.unix < 0:
@@ -791,7 +841,6 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
                                True)
             return
 
-        # Set up the data
         Visual.betterPrint("Got needed information, setting up data", True)
         buydata = {
             "collectibleItemId": inf["collectibleItemId"],
@@ -927,7 +976,7 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
                         Visual.betterPrint(f"[COLOR_CYAN]Buying the {limited['name']} ({limited['id']})[COLOR_WHITE]")
                         self.stats = themeConfig.get("status buying", "Buying Limited")
 
-                        await self.buy(s, limited)  # Start met het kopen zonder enige zorg in de wereld
+                        await self.buy(s, limited)
 
                 self._time = round(time.perf_counter()-start, 3)
                 if self._time < self.cooldown and not data[3]:
