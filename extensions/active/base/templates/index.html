@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Interface for {{ sniper.userinfo["name"] }}</title>
+
+    <script>document.createElement("indent");</script>
+    <style>
+        indent {
+            margin-left: 45px;
+        }
+
+        .card {
+            border-style: solid;
+            border: 1px solid white;
+            border-radius: 8px;
+            height: 75%;
+            max-height: 600px;
+        }
+
+        .box {
+            border-style: solid;
+            border-width: 1px;
+            resize: vertical;
+            overflow: auto;
+        }
+
+        .connectedInput {
+          display:flex;
+          flex-direction:row;
+          border:1px solid white;
+          padding:1px;
+          border-bottom-left-radius: 8px;
+          border-bottom-right-radius: 8px;
+        }
+
+        .button-primary {
+            border:1px solid blue;
+            background:blue;
+            color:white;
+            font-size:17px;
+            background-color: #0d6efd;
+        }
+
+        .fullInput {
+          display:flex;
+          flex-direction:row;
+          border:1px solid white;
+          padding:1px;
+          border-radius: 8px;
+        }
+
+        .input-container {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            padding: 10px;
+            border: none;
+            flex-grow: 2;
+            background-color: #111;
+            color: #fff;
+            outline: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body style="background-color: #35393e; color: #ffffff; font-family: Arial, sans-serif; overflow-x: hidden;">
+    <h1 style="margin-left: 1%;">Welcome back {{ sniper.userinfo["name"] }}</h1>
+    <hr style="margin: 30px -20px 20px;border: 0;border-top: 1px solid #c9c7c7;">
+
+    <div class="card" style="position:absolute; left:1%; width: 23%;">
+        <div style="margin-left: 20px; margin-right: 20px;">
+            <h1>Commands</h1>
+
+            <div class="fullInput">
+                <input class="input-container" id="ids" type="text" placeholder="Ids to add (Split with ', ')">
+                <button style="border:1px solid blue;background:blue;color:white;font-size:17px;border-radius: 8px; background-color: #0d6efd;" type="button" id="add ids" onclick="add_ids()">Add</button>
+            </div>
+            <div class="fullInput">
+                <input class="input-container" id="cooldown" type="text" placeholder="Cooldown">
+                <button style="border:1px solid blue;background:blue;color:white;font-size:17px;border-radius: 8px; background-color: #0d6efd;" type="button" id="set cooldown" onclick="set_cooldown()">Set</button>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="position:absolute; left:27%; width: 37%;">
+        <div style="margin-left: 20px; margin-right: 20px;">
+            <h1>Console</h1>
+
+            <div id="console" style="width: 100%; max-width: 100%; height:250px;background-color: #111;border-top-right-radius: 8px;border-top-left-radius: 8px;" class="box">
+                <span style="margin-left: 4px;">Loading...</span>
+            </div>
+            <div class="connectedInput">
+                <input class="input-container" id="command" type="text" placeholder="Command. >help for help">
+                <button class="button-primary" style="border-bottom-right-radius: 8px;" type="button" id="execute command" onclick="execute_command()">Execute</button>
+            </div>
+
+            <br><br>
+            <button type="button" class="button-primary" style="border-radius: 4px" onclick="document.location = '/get-logs'">Download logs</button>
+        </div>
+    </div>
+    <div class="card" style="position:absolute; left:68%; width: 30%">
+        <div style="margin-left: 20px; margin-right: 10px;">
+            <h1>Stats</h1>
+            <div style="font-size:18px;">Did you know that: <b>{{ fact }}</b></div><br>
+
+            <div style="width: 90%; height:250px;margin: auto;background-color: #111; border-radius: 8px;" align="center" class="box" id="stats">
+                <span>Loading...</span>
+            </div>
+        </div>
+    </div>
+
+
+    <script> // The script for the console
+        var input = document.getElementById("command");
+
+        input.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            document.getElementById("execute command").click();
+            input.value = "";
+          }
+        });
+
+        var input2 = document.getElementById("ids");
+
+        input2.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            document.getElementById("add ids").click();
+          }
+        });
+
+        var input3 = document.getElementById("cooldown");
+
+        input3.addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+            document.getElementById("set cooldown").click();
+          }
+        });
+
+        function update_console(scroll_down=false){
+            fetch("/get-console").then(function(response) {
+              return response.json();
+            }).then(function(data) {
+              let text = "";
+              for (const i of data) {
+                text += i + "<br>"
+              }
+
+              document.getElementById("console").innerHTML = text;
+
+              let console = document.getElementById("console")
+              console.scrollTop = console.scrollHeight;
+            })
+        }
+        function update_stats(){
+            fetch("/get-stats").then(function(response) {
+              return response.text()
+            }).then(function(data){
+                 document.getElementById("stats").innerHTML = data
+            })
+        }
+
+        update_console();
+        update_stats();
+        let console = document.getElementById("console")
+        console.scrollTop = console.scrollHeight;
+        const interval = setInterval(function() {
+            update_console()
+        }, 5000);
+        const _interval = setInterval(function() {
+            update_stats()
+        }, 1000);
+
+
+        // Input events
+                 function execute_command(){
+            fetch('/execute', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({text: document.getElementById('command').value})
+            }).then(function(response){
+                update_console(true);
+            })
+        }
+
+        function add_ids(){
+            let ids = document.getElementById("ids")
+
+            fetch(`/add-ids?ids=${ids.value}`, {
+            }).then(function(response){
+                update_console(true)
+                ids.value = "";
+            })
+        }
+
+        function set_cooldown(){
+            let cooldown = document.getElementById("cooldown")
+
+            fetch(`/set-cooldown?cooldown=${cooldown.value}`, {
+            }).then(function(response){
+                update_console(true)
+                cooldown.value = "";
+            })
+        }
+    </script>
+</body>
+</html>

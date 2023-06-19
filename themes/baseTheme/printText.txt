@@ -4,6 +4,7 @@
 
     [COLOR_WHITE][Price checks made: [COLOR_GREEN][priceChecks][COLOR_WHITE]]
     [COLOR_WHITE][Limiteds added: [COLOR_GREEN][limitedsAmount][COLOR_WHITE]]
+        --> [COLOR_WHITE]User scanner: [COLOR_GREEN][scanner_added][COLOR_WHITE]]
     [COLOR_GREEN][UGC Items bought][COLOR_WHITE]
         --> [COLOR_WHITE][Bought UGCs: [COLOR_GREEN][bought][COLOR_WHITE]]
         --> [COLOR_WHITE][Bought paid UGCs: [COLOR_GREEN][boughtpaid][COLOR_WHITE]]
@@ -11,5 +12,7 @@
         [COLOR_WHITE]--> [Current Proxy: [COLOR_YELLOW][currentProxy][COLOR_WHITE]]
     [COLOR_WHITE][Status: [COLOR_YELLOW][status][COLOR_WHITE]]
 
+    RAM Usage: [COLOR_GREEN][memory_usage]MB[COLOR_WHITE]
+    [COLOR_LIGHT_BLUE][tooltip][COLOR_WHITE]
     Logs:
-        [logs]
+[logs]

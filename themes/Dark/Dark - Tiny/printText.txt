@@ -1,0 +1,2 @@
+
+          [GRADIENT_404040_D2D2D2]Speed: "[speed]"[END]

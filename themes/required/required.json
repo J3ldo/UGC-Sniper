@@ -25,6 +25,15 @@
         "[priceChecks]",
         "[bought]",
         "[boughtpaid]",
+        "[scanner_added]",
+
+         "[ip]",
+         "[tooltip]",
+         "[memory_usage]",
+         "[cpu_usage]",
+         "[network_strength]",
+         "[network_receive]",
+         "[netowrk_transmit]",
 
         "[x-csrf]",
         "[cooldown]",
@@ -32,7 +41,6 @@
         "[version]",
         "[mode]",
         "[logs]",
-        "[ip]",
         "[runtime]"
     ],
 

@@ -1,0 +1,6 @@
+2023-06-20 00:42:59,175:INFO-main  Started
+2023-06-20 00:43:00,705:INFO-<string>  [COLOR_AQUAMARINE_1A]Checking for potential updates...
+2023-06-20 00:43:03,817:INFO-<string>  [COLOR_GREEN]Successfully started the web interface.
+2023-06-20 00:43:03,817:INFO-<string>  [COLOR_GREEN]Hosting web interface on: 192.168.2.10/127.0.0.1
+2023-06-20 00:43:03,829:INFO-main  Started getting token.
+2023-06-20 00:43:04,149:INFO-<string>  [COLOR_RED]Invalid cookie parsed.

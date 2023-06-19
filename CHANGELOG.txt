@@ -1,6 +1,50 @@
-Fixed webhook
-Fixed ratelimit issue
-Fixed bot
-Didnt fix you not getting any bitches
-Fixed random discord_webhook import??
-Fixed visual
+Startup speed improvements
+Removed get_stock because it was useless
+Added accurate count of items bought when buying limiteds
+Add tools
+    -> Extension creator
+    -> Theme selector
+    -> Theme creator
+    -> Limited seller -PREMIUM-
+    -> Extension selector
+More events for extensions
+New command >setcooldown which sets the cooldown
+Added animated themes
+Added active and inactive extensions.
+Lots of bug fixes
+Code cleanup
+Fixed multibuy
+Fixed infinite Token Outdated message
+Scanner speed ups -PREMIUM-
+Cheap UGC item sniper -PREMIUM-
+Fixed ping everyone not pinging everyone.
+Added support for limited links.
+Fixed >cooldown command
+Fixed viewing lots of limiteds.
+Fixed unable to buy paid limiteds.
+Fixed cheap proxies logging you out
+Fixed proxies sending your cookie (BIG SECURITY RISK)
+Added seperate Cheap UGC Buyer
+Added game only protection
+New tool color showcase
+Added cheap limiteds blacklist -PREMIUM ONLY-
+Fixed stuck buying group only limiteds.
+Prevented roblox having a stroke when trying to see if limited is onsale
+Added clear command
+Added pause command. (Will only stop checking.)
+Added tooltips (This shit becoming a game)
+Random changelog i added
+Added max serial for cheap resellable items -PREMIUM-
+Better and faster key validation -PREMIUM-
+Fixed not being able to buy group limiteds.
+Fixed not being able to scrape resellable limiteds under heavy API load -PREMIUM-
+Added tutorials (https://www.youtube.com/channel/UCR4s1DE9J4DHzZYXMltSMAg)
+Fixed get_token sometimes crashing on bad API
+Fixed limited name being assigned when no name is available
+Fixed start_buy not working
+Added loading modules info
+Fixed some small mac issues
+Fixes to "theme selector.py"
+Fixed [runtime]
+Added a lot of new themes
+Fixed auto update

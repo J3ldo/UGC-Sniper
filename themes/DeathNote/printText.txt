@@ -1,0 +1,31 @@
+,   
+
+                                                               [GRADIENT_FF0000_000000]<==Account Stats==>[END]
+   
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]Username: @[username][END]        
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]User Id: [userId][END]
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]DisplayName: [displayName][END]
+       
+                                                               [GRADIENT_FF0000_000000]<==Proxy Stats==>[END]
+     
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]Proxy Amount: [proxyAmount][END]
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]Current Proxy: [currentProxy][END]
+          
+         
+                                                               [GRADIENT_FF0000_000000]<==Sniper Stats==>[END]
+     
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]Status: [status][END]
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]Items Id: [limitedsAmount][END]
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]Price Checks: [priceChecks][END]
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]Time: [time][END]
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]Speed: [speed][END]
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]Limiteds Sniped: [bought][END]
+                                                   [GRADIENT_FFFFFF_000000]-[END] [GRADIENT_FFFFFF_7C7C7C]RateLimits: [ratelimits][END]
+          
+       
+                                                               [GRADIENT_FF0000_000000]<==Credits==>[END]
+
+                   [GRADIENT_FFFFFF_FF0000]-[END] [GRADIENT_FFFFFF_FF0000]Theme Maked By: DeniS#1677[END] 
+                   [GRADIENT_FFFFFF_FF0000]-[END] [GRADIENT_FFFFFF_FF0000]Sniper Made By: Jeldo#9587[END]
+
+[GRADIENT_FF0000_FF0000]-[END] [GRADIENT_FFFFFF_FF0000]Theme: Death Note[END]

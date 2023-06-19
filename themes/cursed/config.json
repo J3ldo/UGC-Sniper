@@ -16,6 +16,6 @@
     "frames": "frames",
 
     "script": "theme.py",
-    "logo": "logo.txt",
-    "printText": "printText.txt"
+    "logo": "cursed-logo.txt",
+    "printText": "cursed.txt"
 }

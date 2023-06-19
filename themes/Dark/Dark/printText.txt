@@ -1,0 +1,30 @@
+
+                                              Information
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Hello! [displayName][END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Status: "[status]"[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Sniping: "[limitedsAmount]" Limiteds[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Sniping: "[limiteds]"[END]
+                                 ----------------------------------------------
+                                              Limited's Information
+                                 ----------------------------------------------
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Speed: "[speed]"[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Time: "[time]"[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Checks: "[priceChecks]"[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Sniped: "[bought]"[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Errors: "[ratelimits]"[END]
+                                 ----------------------------------------------
+                                              Proxy Info
+                                 ----------------------------------------------
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Current Proxy: [currentProxy][END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Changed Proxies: "[changedProxies]"[END]
+                                 ----------------------------------------------
+                                             Additions
+                                 ----------------------------------------------
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Username: "[username]"[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Sniper Mode: "[mode]"[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Version: "[version]"[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Sniper by Jeldo#9587[END]
+                                      [GRADIENT_FFFFFF_777777]{~}[END] [GRADIENT_404040_D2D2D2]Theme by SlollFoll#1838[END]
+
+[GRADIENT_FFFFFF_777777]{~} Logs:[END]
+[GRADIENT_FFFFFF_777777][logs][END]
