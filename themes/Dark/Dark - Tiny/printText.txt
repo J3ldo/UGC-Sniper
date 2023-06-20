@@ -1,2 +1,13 @@
 
           [GRADIENT_404040_D2D2D2]Speed: "[speed]"[END]
+          [GRADIENT_404040_D2D2D2]Checks: "[priceChecks]"[END]
+          [GRADIENT_404040_D2D2D2]Sniped: "[bought]"[END]
+          [GRADIENT_404040_D2D2D2]Errors: "[ratelimits]"[END]
+        [GRADIENT_404040_D2D2D2]--------------------------[END]
+          [GRADIENT_404040_D2D2D2]Sniper Mode: "[mode]"[END]
+          [GRADIENT_404040_D2D2D2]Version: "[version]"[END]
+          [GRADIENT_404040_D2D2D2]Username: "[username]"[END]
+          
+[GRADIENT_404040_D2D2D2]Logs:[END]
+
+[GRADIENT_404040_D2D2D2][logs][END]
