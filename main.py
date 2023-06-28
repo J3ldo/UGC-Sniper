@@ -1,7 +1,7 @@
 # Made by:
 #   Original code, updates, and owner: @jeldo
 #   Proxy support, fork, better UI, and developer: ! max#7948
-VERSION = "3.0.0"
+VERSION = "3.0.1"
 import os; os.system("cls" if os.name == "nt" else "clear")
 
 try:
@@ -604,7 +604,7 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
             return
         Visual.betterPrint("[COLOR_AQUAMARINE_1A]Checking for potential updates...")
         async with aiohttp.ClientSession() as s:
-            src = await (await s.get("https://raw.githubusercontent.com/J3ldo/UGC-Sniper/main/main.py")).text()
+            src = await (await s.get("https://raw.githubusercontent.com/J3ldo/UGC-Sniper/main/main.py", ssl=False)).text()
         try:
             version = src.split("VERSION = \"")[1].split("\"")[0]
         except IndexError:
