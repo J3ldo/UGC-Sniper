@@ -1103,7 +1103,7 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
             try: self.limitednames[str(limited['id'])] = limited['name']
             except KeyError: pass
 
-            elif limited.get("saleLocationType", "") == "ExperiencesDevApiOnly":
+            if limited.get("saleLocationType", "") == "ExperiencesDevApiOnly":
                 Visual.betterPrint(
                     f"[COLOR_RED]Limited found was a game exclusive item, removed from list. Limited: {limited['id']}")
                 if remove: self.limiteds.remove(str(limited["id"]))
