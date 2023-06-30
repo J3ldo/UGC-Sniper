@@ -1103,13 +1103,6 @@ class UGCSniper:  # OMG guys he stole this from xolo!!
             try: self.limitednames[str(limited['id'])] = limited['name']
             except KeyError: pass
 
-            if "Collectible" not in limited.get("itemRestrictions", []) and limited.get("hasResellers", 1) == 1 \
-                and limited.get("totalQuantity", -1) == -1 and \
-                    limited.get("unitsAvailableForConsumption", -1) < 0 and limited.get("priceStatus", "") != "Off Sale":
-                Visual.betterPrint(
-                    f"[COLOR_RED]Limited found was a normal UGC item, removed from list. Limited: {limited['id']}")
-                if remove: self.limiteds.remove(str(limited["id"]))
-
             elif limited.get("saleLocationType", "") == "ExperiencesDevApiOnly":
                 Visual.betterPrint(
                     f"[COLOR_RED]Limited found was a game exclusive item, removed from list. Limited: {limited['id']}")
