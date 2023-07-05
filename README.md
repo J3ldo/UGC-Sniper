@@ -1,5 +1,5 @@
 
-# [UGC Sniper]((https://discord.gg/3Uvcf8d9aY))
+# [J3ldo UGC Sniper]((https://discord.gg/j3ldo))
 The first and best sniper, **again.**
 
 A free UGC sniper bot for roblox that snipes limiteds.  
@@ -7,6 +7,7 @@ A free UGC sniper bot for roblox that snipes limiteds.
 - Unofficial tutorial: [Youtube Link](https://youtu.be/tLiNCI8bzSo)  
 - Mobile tutorial: [Google Docs Link](https://docs.google.com/document/d/13mYq6G7g4Q6pZBVuaNQ_H0KQJjUJpyF3/edit?usp=drivesdk&ouid=117398690012196350729&rtpof=true&sd=true)
 - Roblox Game Sniper: [Roblox Game](https://www.roblox.com/games/13431825632/ugc)
+- Discord Server: [Discord Server](https://discord.gg/j3ldo)
 
 ## Table of contents
 1. [Table of contents](https://github.com/J3ldo/UGC-Sniper#Table-of-contents)
@@ -14,28 +15,32 @@ A free UGC sniper bot for roblox that snipes limiteds.
 3. [Features](https://github.com/J3ldo/UGC-Sniper#Features)
 4. [How to use](https://github.com/J3ldo/UGC-Sniper#how-to-use)
 
-## [Premium](https://discord.gg/3Uvcf8d9aY)
-If you aren't happy with the performance of this UGC Sniper or want a better sniper, you can buy the premium limited sniper. 
-For €10, the premium limited sniper sniper has way more functionality & features, including:
+## [Premium](https://discord.gg/j3ldo)
+If you aren't happy with the performance of this UGC Sniper or want a better sniper, you can buy the premium ugc limited sniper.\
+For €10, the premium ugc limited sniper sniper has way more functionality & features, including:
   
-- Check prices way faster, and faster proxies
-- Search items based on RAP, projection detection
-- alt account support
-- blacklisted keywords
-- fast price checking (119 limiteds in 0.75 seconds)
-- dynamic pricing of limiteds
+- Built in limited searcher
+- Early access to updates
+- UGC Notifier
+- Autosearcher 
+- Cheap Limited Seller
+- Faster Buying\
   ..and way more. 
 
 ## Features
-* Different sniping modes afk, regular, time
-* Multicookie support
+* Different sniping modes: speed, quick, casual, afk, time, specific time
+* Multi Cookie support
+* Multi ID support
 * Incredible speed
 * Proxy support
+* Discord Bot
+* Rendered Website
 * Buy free and paid ugcs
 * Highly customizable
-* Make your own themes
-* Free, and safe to use
-* Windows, Mobile, Unix, Linux support
+* Themes
+* Extensions
+* Free and safe to use
+* Windows, Mobile, Unix, and Linux support
 
 ## How to use
 ### [Click me to watch the unofficial installation guide](https://youtu.be/tLiNCI8bzSo)
@@ -53,17 +58,23 @@ Then open google chrome and click on the extensions button > manage extensions >
 Select the repository directory and click on the extension icon. Now just copy the .ROBLOSECURITY!
 
 ### Step 4
-Put in the desired limiteds in limiteds.txt and seperate them with a comma.
-It should look like this
-Asset1, Asset2, Asset3
+Put in the desired limiteds in limiteds.txt and seperate them with a comma or new line.
+It should look like this:
+> Asset1, Asset2, Asset3
+or
+> Asset1
+> Asset2
+> Asset3
 
 ### Step 5
 Just run the main.py file and you will see it starting to check if its free.
-That's all, hope you get some good deals and some good robux, if you do make sure to star this repository.
+That's all, hope you get some good deals and some good robux. Please make sure to star this repository.
 
 
 ## How to create a theme
 * Copy paste and rename baseTheme
 * Put your path to the theme into current theme in the config
 * Edit mainlogo.txt for the logo and printText.txt for the printed text  
-**TIP - For all variabled and colours see themes/required.json**
+**TIP - For all variabled and colours see themes/required.json**\
+  \
+  This work is licensed under a [Open Source Initiative MIT License](https://opensource.org/license/mit/)
