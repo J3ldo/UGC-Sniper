@@ -24,11 +24,12 @@ For €10, the premium ugc limited sniper sniper has way more functionality & fe
 - UGC Notifier
 - Autosearcher 
 - Cheap Limited Seller
-- Faster Buying\
-  ..and way more. 
+- Faster Buying
+- Automatically buy cheap resold items \
+  **..and way more.**
 
 ## Features
-* Different sniping modes: speed, quick, casual, afk, time, specific time
+* Different sniping modes: no ratelimits, speed, quick, casual, afk, time, specific time
 * Multi Cookie support
 * Multi ID support
 * Incredible speed
@@ -40,6 +41,8 @@ For €10, the premium ugc limited sniper sniper has way more functionality & fe
 * Themes
 * Extensions
 * Free and safe to use
+* Community made themes
+* Active community
 * Windows, Mobile, Unix, and Linux support
 
 ## How to use
@@ -59,22 +62,29 @@ Select the repository directory and click on the extension icon. Now just copy t
 
 ### Step 4
 Put in the desired limiteds in limiteds.txt and seperate them with a comma or new line.
-It should look like this:
-> Asset1, Asset2, Asset3
-or
-> Asset1
-> Asset2
-> Asset3
+It should look like this:  
+> Asset1, Asset2, Asset3  
+or  
+> Asset1  
+> Asset2  
+> Asset3  
+or  
+> link1  
+> link2  
+> link3  
 
 ### Step 5
 Just run the main.py file and you will see it starting to check if its free.
-That's all, hope you get some good deals and some good robux. Please make sure to star this repository.
-
+That's all, hope you get some good deals and some good robux.  
+If you find this repository/script helpful then please leave a star.
 
 ## How to create a theme
-* Copy paste and rename baseTheme
-* Put your path to the theme into current theme in the config
-* Edit mainlogo.txt for the logo and printText.txt for the printed text  
-**TIP - For all variabled and colours see themes/required.json**\
+* Go to tools/theme creator.py and run the python file
+* Put in all the needed information
+* Go to tools/theme selector.py and select the theme
+* Open themes/themeName and edit the files.  \
+    logo.txt contains the logo  \
+    printText.txt contains the text will all the info  \
+**TIP - For all variables and colours see themes/required/required.json**\
   \
   This work is licensed under a [Open Source Initiative MIT License](https://opensource.org/license/mit/)
