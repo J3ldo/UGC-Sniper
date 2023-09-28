@@ -7,7 +7,7 @@ A free UGC sniper bot for roblox that snipes limiteds.
 - Unofficial tutorial: [Youtube Link](https://youtu.be/tLiNCI8bzSo)  
 - Mobile tutorial: [Google Docs Link](https://docs.google.com/document/d/13mYq6G7g4Q6pZBVuaNQ_H0KQJjUJpyF3/edit?usp=drivesdk&ouid=117398690012196350729&rtpof=true&sd=true)
 - Roblox Game Sniper: [Roblox Game](https://www.roblox.com/games/13431825632/ugc)
-- Discord Server: [Discord Server](https://discord.gg/j3ldo)
+- Discord Server: [Discord Server](https://discord.gg/3Uvcf8d9aY)
 
 ## Table of contents
 1. [Table of contents](https://github.com/J3ldo/UGC-Sniper#Table-of-contents)
