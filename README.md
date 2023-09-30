@@ -1,12 +1,16 @@
 
 # [J3ldo UGC Sniper]((https://discord.gg/j3ldo))
+
+## this sniper is outdated due to recent pushes of captchas to buying free limiteds. if you would like to continue sniping free limiteds without captchas, use the game:
+https://www.roblox.com/games/14426931177/J3ldo-UGC-Sniper
+
 The first and best sniper, **again.**
 
 A free UGC sniper bot for roblox that snipes limiteds.  
 
 - Unofficial tutorial: [Youtube Link](https://youtu.be/tLiNCI8bzSo)  
 - Mobile tutorial: [Google Docs Link](https://docs.google.com/document/d/13mYq6G7g4Q6pZBVuaNQ_H0KQJjUJpyF3/edit?usp=drivesdk&ouid=117398690012196350729&rtpof=true&sd=true)
-- Roblox Game Sniper: [Roblox Game](https://www.roblox.com/games/13431825632/ugc)
+- Roblox Game Sniper: [Roblox Game](https://www.roblox.com/games/14426931177/J3ldo-UGC-Sniper)
 - Discord Server: [Discord Server](https://discord.gg/3Uvcf8d9aY)
 
 ## Table of contents
